@@ -7,13 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C5C88BB8F3F3513113818CE /* Pods_DEH_Narrator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187D305F0112DFADA1C11528 /* Pods_DEH_Narrator.framework */; };
+		A048895A1DE9EEF00065FBEB /* SimpleCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04889591DE9EEF00065FBEB /* SimpleCustomCell.swift */; };
 		A084B0D31DE9402F009F6FD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084B0D21DE9402F009F6FD4 /* AppDelegate.swift */; };
-		A084B0D51DE9402F009F6FD4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084B0D41DE9402F009F6FD4 /* ViewController.swift */; };
 		A084B0D81DE9402F009F6FD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A084B0D61DE9402F009F6FD4 /* Main.storyboard */; };
 		A084B0DA1DE9402F009F6FD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A084B0D91DE9402F009F6FD4 /* Assets.xcassets */; };
 		A084B0DD1DE9402F009F6FD4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A084B0DB1DE9402F009F6FD4 /* LaunchScreen.storyboard */; };
 		A084B0E81DE9402F009F6FD4 /* DEH_NarratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084B0E71DE9402F009F6FD4 /* DEH_NarratorTests.swift */; };
 		A084B0F31DE9402F009F6FD4 /* DEH_NarratorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084B0F21DE9402F009F6FD4 /* DEH_NarratorUITests.swift */; };
+		A084B1011DE9446C009F6FD4 /* IndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084B1001DE9446C009F6FD4 /* IndexViewController.swift */; };
+		A084B1051DE944EA009F6FD4 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084B1041DE944EA009F6FD4 /* GroupViewController.swift */; };
+		A084B1071DE9450E009F6FD4 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084B1061DE9450E009F6FD4 /* SearchTableViewController.swift */; };
+		A084B1091DE94522009F6FD4 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084B1081DE94522009F6FD4 /* DetailViewController.swift */; };
+		A084B10B1DE94541009F6FD4 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084B10A1DE94541009F6FD4 /* ImageViewController.swift */; };
+		A084B10F1DE97480009F6FD4 /* SendHttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084B10E1DE97480009F6FD4 /* SendHttpRequest.swift */; };
+		A084B1151DE97F7B009F6FD4 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084B1141DE97F7B009F6FD4 /* CustomCell.swift */; };
+		A084B1171DE9895F009F6FD4 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084B1161DE9895F009F6FD4 /* InfoViewController.swift */; };
+		A084B1191DE9DAB3009F6FD4 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084B1181DE9DAB3009F6FD4 /* VideoPlayerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +44,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		187D305F0112DFADA1C11528 /* Pods_DEH_Narrator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DEH_Narrator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		588D5B3E2F7EC116DA42DF42 /* Pods-DEH Narrator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DEH Narrator.release.xcconfig"; path = "Pods/Target Support Files/Pods-DEH Narrator/Pods-DEH Narrator.release.xcconfig"; sourceTree = "<group>"; };
+		9468CA76229851DC4B3E205B /* Pods-DEH Narrator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DEH Narrator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DEH Narrator/Pods-DEH Narrator.debug.xcconfig"; sourceTree = "<group>"; };
+		A04889591DE9EEF00065FBEB /* SimpleCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleCustomCell.swift; sourceTree = "<group>"; };
 		A084B0CF1DE9402E009F6FD4 /* DEH Narrator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DEH Narrator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A084B0D21DE9402F009F6FD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A084B0D41DE9402F009F6FD4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A084B0D71DE9402F009F6FD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A084B0D91DE9402F009F6FD4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A084B0DC1DE9402F009F6FD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +60,16 @@
 		A084B0EE1DE9402F009F6FD4 /* DEH NarratorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DEH NarratorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A084B0F21DE9402F009F6FD4 /* DEH_NarratorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DEH_NarratorUITests.swift; sourceTree = "<group>"; };
 		A084B0F41DE9402F009F6FD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A084B1001DE9446C009F6FD4 /* IndexViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexViewController.swift; sourceTree = "<group>"; };
+		A084B1041DE944EA009F6FD4 /* GroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
+		A084B1061DE9450E009F6FD4 /* SearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
+		A084B1081DE94522009F6FD4 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		A084B10A1DE94541009F6FD4 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		A084B10E1DE97480009F6FD4 /* SendHttpRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendHttpRequest.swift; sourceTree = "<group>"; };
+		A084B1111DE97736009F6FD4 /* DEH Narrator-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DEH Narrator-Bridging-Header.h"; sourceTree = "<group>"; };
+		A084B1141DE97F7B009F6FD4 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		A084B1161DE9895F009F6FD4 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		A084B1181DE9DAB3009F6FD4 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C5C88BB8F3F3513113818CE /* Pods_DEH_Narrator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +98,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F16589139661A2A21033B60 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9468CA76229851DC4B3E205B /* Pods-DEH Narrator.debug.xcconfig */,
+				588D5B3E2F7EC116DA42DF42 /* Pods-DEH Narrator.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		3095AD4726FD0402A6D41BC0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				187D305F0112DFADA1C11528 /* Pods_DEH_Narrator.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A084B0C61DE9402E009F6FD4 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +122,8 @@
 				A084B0E61DE9402F009F6FD4 /* DEH NarratorTests */,
 				A084B0F11DE9402F009F6FD4 /* DEH NarratorUITests */,
 				A084B0D01DE9402E009F6FD4 /* Products */,
+				2F16589139661A2A21033B60 /* Pods */,
+				3095AD4726FD0402A6D41BC0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,11 +141,21 @@
 			isa = PBXGroup;
 			children = (
 				A084B0D21DE9402F009F6FD4 /* AppDelegate.swift */,
-				A084B0D41DE9402F009F6FD4 /* ViewController.swift */,
 				A084B0D61DE9402F009F6FD4 /* Main.storyboard */,
+				A084B1001DE9446C009F6FD4 /* IndexViewController.swift */,
+				A084B1041DE944EA009F6FD4 /* GroupViewController.swift */,
+				A084B1061DE9450E009F6FD4 /* SearchTableViewController.swift */,
+				A084B1081DE94522009F6FD4 /* DetailViewController.swift */,
+				A084B10A1DE94541009F6FD4 /* ImageViewController.swift */,
+				A084B1181DE9DAB3009F6FD4 /* VideoPlayerViewController.swift */,
+				A084B1161DE9895F009F6FD4 /* InfoViewController.swift */,
+				A084B10E1DE97480009F6FD4 /* SendHttpRequest.swift */,
+				A084B1141DE97F7B009F6FD4 /* CustomCell.swift */,
+				A04889591DE9EEF00065FBEB /* SimpleCustomCell.swift */,
 				A084B0D91DE9402F009F6FD4 /* Assets.xcassets */,
 				A084B0DB1DE9402F009F6FD4 /* LaunchScreen.storyboard */,
 				A084B0DE1DE9402F009F6FD4 /* Info.plist */,
+				A084B1111DE97736009F6FD4 /* DEH Narrator-Bridging-Header.h */,
 			);
 			path = "DEH Narrator";
 			sourceTree = "<group>";
@@ -132,9 +185,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A084B0F71DE94030009F6FD4 /* Build configuration list for PBXNativeTarget "DEH Narrator" */;
 			buildPhases = (
+				7C341DB9DA49CDC6A820C93F /* [CP] Check Pods Manifest.lock */,
 				A084B0CB1DE9402E009F6FD4 /* Sources */,
 				A084B0CC1DE9402E009F6FD4 /* Frameworks */,
 				A084B0CD1DE9402E009F6FD4 /* Resources */,
+				2E68964694EE538DC99FE1DD /* [CP] Embed Pods Frameworks */,
+				082765BC5B1CD7295A74EE77 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -254,13 +310,70 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		082765BC5B1CD7295A74EE77 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DEH Narrator/Pods-DEH Narrator-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2E68964694EE538DC99FE1DD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DEH Narrator/Pods-DEH Narrator-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7C341DB9DA49CDC6A820C93F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A084B0CB1DE9402E009F6FD4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A084B0D51DE9402F009F6FD4 /* ViewController.swift in Sources */,
+				A084B1051DE944EA009F6FD4 /* GroupViewController.swift in Sources */,
 				A084B0D31DE9402F009F6FD4 /* AppDelegate.swift in Sources */,
+				A084B1091DE94522009F6FD4 /* DetailViewController.swift in Sources */,
+				A084B10F1DE97480009F6FD4 /* SendHttpRequest.swift in Sources */,
+				A084B1171DE9895F009F6FD4 /* InfoViewController.swift in Sources */,
+				A048895A1DE9EEF00065FBEB /* SimpleCustomCell.swift in Sources */,
+				A084B1011DE9446C009F6FD4 /* IndexViewController.swift in Sources */,
+				A084B10B1DE94541009F6FD4 /* ImageViewController.swift in Sources */,
+				A084B1191DE9DAB3009F6FD4 /* VideoPlayerViewController.swift in Sources */,
+				A084B1151DE97F7B009F6FD4 /* CustomCell.swift in Sources */,
+				A084B1071DE9450E009F6FD4 /* SearchTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,23 +515,30 @@
 		};
 		A084B0F81DE94030009F6FD4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9468CA76229851DC4B3E205B /* Pods-DEH Narrator.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "DEH Narrator/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "MMLab.DEH-Narrator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DEH Narrator/DEH Narrator-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		A084B0F91DE94030009F6FD4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 588D5B3E2F7EC116DA42DF42 /* Pods-DEH Narrator.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "DEH Narrator/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "MMLab.DEH-Narrator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DEH Narrator/DEH Narrator-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -487,6 +607,7 @@
 				A084B0F91DE94030009F6FD4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A084B0FA1DE94030009F6FD4 /* Build configuration list for PBXNativeTarget "DEH NarratorTests" */ = {
 			isa = XCConfigurationList;
@@ -495,6 +616,7 @@
 				A084B0FC1DE94030009F6FD4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A084B0FD1DE94030009F6FD4 /* Build configuration list for PBXNativeTarget "DEH NarratorUITests" */ = {
 			isa = XCConfigurationList;
@@ -503,6 +625,7 @@
 				A084B0FF1DE94030009F6FD4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
