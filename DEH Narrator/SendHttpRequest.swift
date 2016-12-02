@@ -24,7 +24,8 @@ class SendHttpRequest {
                 completion(token)
         }
     }
-    
+
+
     func getNearbyData(url: String, token: String, completion:(String?) -> Void) {
         let header = [ "Authorization" : "Token " + token ]
         Alamofire.request(.GET, url, headers: header)

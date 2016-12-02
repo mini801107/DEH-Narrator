@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyJSON
 import Alamofire
+import CocoaAsyncSocket
 
 class InfoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -16,11 +17,13 @@ class InfoViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var tableView: UITableView!
     
+    var mode: String = ""
     let sendhttprequest = SendHttpRequest()
     var POIset = [JSON]()
     var POIinfo: JSON = nil
     var desc: String = ""
     var LOI_AOI_title: String = "景線名稱"
+    var narratorService: NarratorService!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,6 +84,17 @@ class InfoViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let PoiJSONArray = PoiJSONObj["results"].arrayValue
                 self.POIinfo = PoiJSONArray[0]
                 
+                //send POI info to clients
+                if self.mode == "Narrator" {
+                    do{
+                        let POIdata = try self.POIinfo.rawData()
+                        let POIinfoPacket = Packet(objectType: ObjectType.POIInfoPacket, object: POIdata)
+                        self.narratorService.sendPacket(POIinfoPacket)
+                    } catch {
+                        print("Error sending POI info to clients")
+                    }
+                }
+     
                 self.performSegueWithIdentifier("InfoToDetail", sender: self)
             }
         }
@@ -90,7 +104,11 @@ class InfoViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "InfoToDetail" {
             if let destinationVC = segue.destinationViewController as? DetailViewController {
+                destinationVC.mode = mode
                 destinationVC.POIinfo = POIinfo
+                if mode == "Narrator" {
+                    destinationVC.narratorService = self.narratorService
+                }
             }
         }
     }

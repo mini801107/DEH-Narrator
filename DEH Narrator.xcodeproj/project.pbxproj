@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		0C5C88BB8F3F3513113818CE /* Pods_DEH_Narrator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187D305F0112DFADA1C11528 /* Pods_DEH_Narrator.framework */; };
 		A048895A1DE9EEF00065FBEB /* SimpleCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04889591DE9EEF00065FBEB /* SimpleCustomCell.swift */; };
+		A054E1CA1DEB03E0005836A3 /* NarratorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A054E1C91DEB03E0005836A3 /* NarratorService.swift */; };
+		A054E1CC1DEB03F4005836A3 /* NarratorServiceBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A054E1CB1DEB03F4005836A3 /* NarratorServiceBrowser.swift */; };
+		A054E1CE1DEB0404005836A3 /* Packet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A054E1CD1DEB0404005836A3 /* Packet.swift */; };
 		A084B0D31DE9402F009F6FD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084B0D21DE9402F009F6FD4 /* AppDelegate.swift */; };
 		A084B0D81DE9402F009F6FD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A084B0D61DE9402F009F6FD4 /* Main.storyboard */; };
 		A084B0DA1DE9402F009F6FD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A084B0D91DE9402F009F6FD4 /* Assets.xcassets */; };
@@ -48,6 +51,9 @@
 		588D5B3E2F7EC116DA42DF42 /* Pods-DEH Narrator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DEH Narrator.release.xcconfig"; path = "Pods/Target Support Files/Pods-DEH Narrator/Pods-DEH Narrator.release.xcconfig"; sourceTree = "<group>"; };
 		9468CA76229851DC4B3E205B /* Pods-DEH Narrator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DEH Narrator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DEH Narrator/Pods-DEH Narrator.debug.xcconfig"; sourceTree = "<group>"; };
 		A04889591DE9EEF00065FBEB /* SimpleCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleCustomCell.swift; sourceTree = "<group>"; };
+		A054E1C91DEB03E0005836A3 /* NarratorService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NarratorService.swift; sourceTree = "<group>"; };
+		A054E1CB1DEB03F4005836A3 /* NarratorServiceBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NarratorServiceBrowser.swift; sourceTree = "<group>"; };
+		A054E1CD1DEB0404005836A3 /* Packet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Packet.swift; sourceTree = "<group>"; };
 		A084B0CF1DE9402E009F6FD4 /* DEH Narrator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DEH Narrator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A084B0D21DE9402F009F6FD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A084B0D71DE9402F009F6FD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -152,6 +158,9 @@
 				A084B10E1DE97480009F6FD4 /* SendHttpRequest.swift */,
 				A084B1141DE97F7B009F6FD4 /* CustomCell.swift */,
 				A04889591DE9EEF00065FBEB /* SimpleCustomCell.swift */,
+				A054E1C91DEB03E0005836A3 /* NarratorService.swift */,
+				A054E1CB1DEB03F4005836A3 /* NarratorServiceBrowser.swift */,
+				A054E1CD1DEB0404005836A3 /* Packet.swift */,
 				A084B0D91DE9402F009F6FD4 /* Assets.xcassets */,
 				A084B0DB1DE9402F009F6FD4 /* LaunchScreen.storyboard */,
 				A084B0DE1DE9402F009F6FD4 /* Info.plist */,
@@ -371,8 +380,11 @@
 				A048895A1DE9EEF00065FBEB /* SimpleCustomCell.swift in Sources */,
 				A084B1011DE9446C009F6FD4 /* IndexViewController.swift in Sources */,
 				A084B10B1DE94541009F6FD4 /* ImageViewController.swift in Sources */,
+				A054E1CC1DEB03F4005836A3 /* NarratorServiceBrowser.swift in Sources */,
 				A084B1191DE9DAB3009F6FD4 /* VideoPlayerViewController.swift in Sources */,
 				A084B1151DE97F7B009F6FD4 /* CustomCell.swift in Sources */,
+				A054E1CE1DEB0404005836A3 /* Packet.swift in Sources */,
+				A054E1CA1DEB03E0005836A3 /* NarratorService.swift in Sources */,
 				A084B1071DE9450E009F6FD4 /* SearchTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

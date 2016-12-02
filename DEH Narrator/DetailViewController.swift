@@ -12,8 +12,9 @@ import SwiftyJSON
 import Alamofire
 import AVKit
 import AVFoundation
+import CocoaAsyncSocket
 
-class DetailViewController: UIViewController, AVAudioPlayerDelegate {
+class DetailViewController: UIViewController, AVAudioPlayerDelegate, PacketHandleDelegate {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
@@ -22,14 +23,37 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
     @IBOutlet weak var descriptionTextField: UITextView!
     @IBOutlet weak var mediaButton: UIButton!
     
+    var mode: String = ""
     var POIinfo: JSON = nil
-    var audioPlayer: AVAudioPlayer?
     var mediaType: String?
     var fileURL: NSURL?
-
+    var soundData = NSData()
+    
+    var narratorService: NarratorService!
+    var narratorServiceBrowser: NarratorServiceBrowser!
+    
+    var audioPlayer: AVAudioPlayer? = nil
+    var audioBuffer: NSMutableData?
+    var audioFileLength: Int = 0
+    var audioPacketCount: Int = -1
+    let threshold = 500000
+    var hasStreamAudioFile: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if mode == "Member" {
+            mediaButton.enabled = false
+            //narratorServiceBrowser = NarratorServiceBrowser(sock: socket!)
+            //narratorServiceBrowser.startBrowsing()
+            narratorServiceBrowser.delegate = self
+            showPOIinfo()
+        }
+        else {
+            showPOIinfo()
+        }
+    }
+    
+    func showPOIinfo() {
         //display POI information
         titleLabel.text = POIinfo["POI_title"].stringValue
         authorLabel.text = POIinfo["rights"].stringValue
@@ -45,21 +69,25 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
         else if mediaType == "2" {
             mediaButton.setImage(UIImage(named: "headphones"), forState: UIControlState.Normal)
             
-            //setup AVAudioPlayer
-            let mediaSet = POIinfo["media_set"].arrayValue
-            let url = mediaSet[0]["media_url"].stringValue
-            let fileURL = NSURL(string: url)
-            let soundData = NSData(contentsOfURL: fileURL!)
+            if mode != "Member" {
+                //setup AVAudioPlayer
+                let mediaSet = POIinfo["media_set"].arrayValue
+                let url = mediaSet[0]["media_url"].stringValue
+                let fileURL = NSURL(string: url)
+                soundData = NSData(contentsOfURL: fileURL!)!
             
-            do {
-                audioPlayer = try AVAudioPlayer(data: soundData!)
-                audioPlayer!.prepareToPlay()
-                audioPlayer!.volume = 1.0
-                audioPlayer!.delegate = self
-            } catch let error as NSError {
-                print("\nError : \n"+error.localizedDescription)
+                do {
+                    audioPlayer = try AVAudioPlayer(data: soundData)
+                    audioPlayer!.prepareToPlay()
+                    audioPlayer!.volume = 1.0
+                    audioPlayer!.delegate = self
+                } catch let error as NSError {
+                    print("\nError : \n"+error.localizedDescription)
+                }
             }
-
+            if mode == "Narrator" {
+                hasStreamAudioFile = false
+            }
         }
         else if mediaType == "4" {
             mediaButton.setImage(UIImage(named: "video_camera"), forState: UIControlState.Normal)
@@ -69,14 +97,39 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "DetailToImage" {
             if let destinationVC = segue.destinationViewController as? ImageViewController {
+                destinationVC.mode = mode
                 destinationVC.picCount = (sender?.integerValue)!
                 destinationVC.mediaSet = POIinfo["media_set"].arrayValue
+                
+                if mode == "Narrator" {
+                    destinationVC.narratorService = self.narratorService
+                }
+                else if mode == "Member" {
+                    destinationVC.narratorServiceBrowser = self.narratorServiceBrowser
+                    //self.narratorServiceBrowser = nil
+                }
             }
         }
         
         if segue.identifier == "DetailToVideo" {
             if let destinationVC = segue.destinationViewController as? VideoPlayerViewController {
-                destinationVC.fileURL = fileURL
+                destinationVC.mode = mode
+                
+                if mode == "Narrator" {
+                    destinationVC.fileURL = fileURL
+                    destinationVC.narratorService = self.narratorService
+                }
+                else if mode == "Member" {
+                    destinationVC.narratorServiceBrowser = self.narratorServiceBrowser
+                }
+            }
+        }
+        
+        if segue.identifier == "DetailToTableUnwind" {
+            if let destinationVC = segue.destinationViewController as? SearchTableViewController {
+                print("unwind")
+                destinationVC.narratorServiceBrowser = self.narratorServiceBrowser
+                self.narratorServiceBrowser = nil
             }
         }
     }
@@ -90,11 +143,25 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
                     picCount += 1
                 }
             }
+            
+            /* Narrator : send number of images to clients */
+            if mode == "Narrator" {
+                let infoPacket = Packet(objectType: ObjectType.imageInfoPacket, object: picCount)
+                narratorService.sendPacket(infoPacket)
+            }
+
             performSegueWithIdentifier("DetailToImage", sender: picCount)
         }
         else if mediaType == "2" {  //type 2 : audio(.acc)
             if audioPlayer != nil {
                 if audioPlayer!.playing == false {
+                    /* Narrator : stream audio file to clients */
+                    if mode == "Narrator" && hasStreamAudioFile == false {
+                        narratorService.streamData(soundData, type: "audio")
+                        hasStreamAudioFile = true
+                        print("stream audio packet")
+                    }
+                    
                     audioPlayer!.play()
                     mediaButton.setImage(UIImage(named: "pause"), forState: UIControlState.Normal)
                 }
@@ -105,6 +172,12 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
             }
         }
         else if mediaType == "4" {  //type 4 : video(.mp4)
+            /* Narrator : send notice to clients to prepare sugue to video view */
+            if mode == "Narrator" {
+                let textPacket = Packet(objectType: ObjectType.textPacket, object: "video")
+                narratorService.sendPacket(textPacket)
+            }
+            
             let mediaSet = POIinfo["media_set"].arrayValue
             let url = mediaSet[0]["media_url"].stringValue
             fileURL = NSURL(string: url)
@@ -123,6 +196,78 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
 
-   
-
+    /******************************** Implement PacketHandleDelegate ********************************/
+    func textPacket(text: String) {
+        performSegueWithIdentifier("DetailToVideo", sender: self)
+    }
+    
+    func imageInfoPacket(count: Int) {
+        performSegueWithIdentifier("DetailToImage", sender: count)
+    }
+    
+    func audioPacket(audio: NSData) {
+        audioPacketCount += 1
+        if audioFileLength <= threshold {
+            if audioPacketCount == 1 {
+                audioBuffer = NSMutableData(data: audio)
+            }
+            else if audioPacketCount == (audioFileLength/4096 + 1) {
+                audioBuffer!.appendData(audio)
+                do {
+                    audioPlayer = try AVAudioPlayer(data: audioBuffer!)
+                    audioPlayer!.prepareToPlay()
+                    audioPlayer!.volume = 1.0
+                    audioPlayer!.delegate = self
+                    print("Initial audio player")
+                    audioPlayer!.play()
+                    mediaButton.setImage(UIImage(named: "pause"), forState: UIControlState.Normal)
+                    mediaButton.enabled = true
+                } catch {
+                    print("Error initialing audio player")
+                }
+            }
+            else {
+                audioBuffer!.appendData(audio)
+            }
+            
+        }
+        else {
+            if audioPacketCount == 1 {
+                audioBuffer = NSMutableData(data: audio)
+            }
+            else if audioPacketCount*4096 >=  audioFileLength/5 {
+                audioBuffer!.appendData(audio)
+                if audioPlayer == nil {
+                    do {
+                        audioPlayer = try AVAudioPlayer(data: audioBuffer!)
+                        audioPlayer!.prepareToPlay()
+                        audioPlayer!.volume = 1.0
+                        audioPlayer!.delegate = self
+                        print("Initial audio player")
+                        audioPlayer!.play()
+                        mediaButton.setImage(UIImage(named: "pause"), forState: UIControlState.Normal)
+                        mediaButton.enabled = true
+                    } catch {
+                        print("Error initialing audio player")
+                    }
+                }
+            }
+            else {
+                audioBuffer!.appendData(audio)
+            }
+        }
+    }
+    
+    func audioInfoPacket(length: Int) {
+        audioFileLength = length
+        audioPacketCount = 0
+    }
+    
+    func POIInfoPacket(POIdata: NSData) {
+        let json = JSON(data: POIdata)
+        POIinfo = json
+        showPOIinfo()
+    }
+    
+    /************************************************************************************************/
 }

@@ -4,4 +4,5 @@ target 'DEH Narrator' do
 	pod 'SwiftyJSON', '2.4.0'
 	
 	pod 'AlamofireImage', '~>2.0'
+	pod 'CocoaAsyncSocket'
 end

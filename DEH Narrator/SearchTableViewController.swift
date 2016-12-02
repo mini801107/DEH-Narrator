@@ -12,16 +12,17 @@ import CoreLocation //for current location
 import Foundation
 import Alamofire
 import SwiftyJSON
+import CocoaAsyncSocket
 
-class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDelegate, UITableViewDataSource {
+class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDelegate, UITableViewDataSource, POIInfoPacketHandleDelegate {
     
-
     @IBOutlet weak var settingsWindow: UIView!
     @IBOutlet weak var searchingTypeSelector: UIPickerView!
     @IBOutlet weak var searchingRadiusLabel: UILabel!
     @IBOutlet weak var radiusSlider: UISlider!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var listLabel: UILabel!
+    @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     
     let locationManager = CLLocationManager()
@@ -33,6 +34,8 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
     var username: String = ""
     var password: String = ""
     var dataArray = Array<JSON>()
+    var narratorService: NarratorService!
+    var narratorServiceBrowser: NarratorServiceBrowser!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,12 +47,17 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
         tableView.dataSource = self
         tableView.delegate = self
         
-        /* Get current location */
-        self.locationManager.delegate = self
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager.requestWhenInUseAuthorization()
-        self.locationManager.startUpdatingLocation()
-        
+        if mode == "Member" {
+            searchButton.enabled = false
+            narratorServiceBrowser.poiDelegate = self
+        }
+        else {
+            /* Get current location */
+            self.locationManager.delegate = self
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            self.locationManager.requestWhenInUseAuthorization()
+            self.locationManager.startUpdatingLocation()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -256,6 +264,16 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let str = searchingType as NSString
         if str.substringWithRange(NSRange(location: 2, length: 2)) == "景點" {
+            //send POI info to clients
+            if mode == "Narrator" {
+                do{
+                    let POIdata = try dataArray[indexPath.row].rawData()
+                    let POIinfoPacket = Packet(objectType: ObjectType.POIInfoPacket, object: POIdata)
+                    narratorService.sendPacket(POIinfoPacket)
+                } catch {
+                    print("Error sending POI info to clients")
+                }
+            }
             performSegueWithIdentifier("TableToDetail", sender: indexPath.row)
         }
         else {
@@ -266,7 +284,15 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "TableToDetail" {
             if let destinationVC = segue.destinationViewController as? DetailViewController {
+                destinationVC.mode = mode
                 destinationVC.POIinfo = dataArray[(sender?.integerValue)!]
+                if mode == "Narrator" {
+                    destinationVC.narratorService = self.narratorService
+                }
+                else if mode == "Member" {
+                    destinationVC.narratorServiceBrowser = self.narratorServiceBrowser
+                    self.narratorServiceBrowser = nil
+                }
             }
         }
         
@@ -282,7 +308,11 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
                     destinationVC.LOI_AOI_title = dataArray[(sender?.integerValue)!]["AOI_title"].stringValue
                     destinationVC.desc = dataArray[(sender?.integerValue)!]["AOI_description"].stringValue
                 }
+                destinationVC.mode = mode
                 destinationVC.POIset = POIset
+                if mode == "Narrator" {
+                    destinationVC.narratorService = self.narratorService
+                }
             }
         }
     }
@@ -379,4 +409,14 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
     }
     /******************************************************************************************************/
     
+    func POIInfoPacket(POIdata: NSData) {
+        let json = JSON(data: POIdata)
+        let POIinfo = json
+        dataArray.removeAll()
+        dataArray.append(POIinfo)
+        performSegueWithIdentifier("TableToDetail", sender: 0)
+    }
+    
+    @IBAction func unwindToTable(segue: UIStoryboardSegue) {
+    }
 }
