@@ -13,27 +13,21 @@ import AlamofireImage
 import Alamofire
 import CocoaAsyncSocket
 
-class ImageViewController: UIViewController, ImagePacketHandleDelegate {
+class ImageViewController: UIViewController, ImagePacketHandleDelegate, POIInfoPacketHandleDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
     
-    var mode: String = ""
     var mediaSet = [JSON]()
     var picCount: Int = 0
     var viewSize = CGRect()
-    
-    var socket: GCDAsyncSocket?
-    var client_sockets = [GCDAsyncSocket]()
-    var narratorService: NarratorService!
-    var narratorServiceBrowser: NarratorServiceBrowser!
     var imagePacket_count: Int = 0
+    var redundantPacket: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //let navigationVC = self.parentViewController as! UINavigationController
-        //let navigationItem_height = navigationVC.navigationBar.bounds.height
-        let navigationItem_height = CGFloat(44)
+        let navigationVC = self.parentViewController as! UINavigationController
+        let navigationItem_height = navigationVC.navigationBar.bounds.height
         scrollView.backgroundColor = UIColor.blackColor()
         scrollView.pagingEnabled = true
         scrollView.contentSize = CGSizeMake(CGFloat(picCount)*self.view.bounds.size.width, self.view.bounds.size.height-navigationItem_height)
@@ -41,9 +35,11 @@ class ImageViewController: UIViewController, ImagePacketHandleDelegate {
         //Setup each view sizeMPMoviePlayerController
         viewSize = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-navigationItem_height)
         
-        if mode == "Member" {
+        if Var.userMode == "Member" {
             imagePacket_count = 0
-            narratorServiceBrowser.imageDelegate = self
+            redundantPacket = false
+            Var.narratorServiceBrowser.imageDelegate = self
+            Var.narratorServiceBrowser.poiDelegate = self
         }
         else {
             for i in 0 ..< picCount {
@@ -66,9 +62,9 @@ class ImageViewController: UIViewController, ImagePacketHandleDelegate {
                 scrollView.addSubview(imgView)
             
                 /* Narrator : send image to clients */
-                if mode == "Narrator" {
+                if Var.userMode == "Narrator" {
                     let imagePacket = Packet(objectType: ObjectType.imagePacket, object: image)
-                    narratorService.sendPacket(imagePacket)
+                    Var.narratorService.sendPacket(imagePacket)
                 }
             }
         }
@@ -80,20 +76,49 @@ class ImageViewController: UIViewController, ImagePacketHandleDelegate {
     }
     
     func imagePacket(img: UIImage) {
+        if redundantPacket == true {
+            print("drop packet")
+           return
+        }
+        
         imagePacket_count += 1
     
-        //Offset view size
+        // Offset view size
         if imagePacket_count != 1 {
             viewSize = CGRectOffset(viewSize, self.view.bounds.size.width, 0)
         }
         
-        //Setup and add images
+        // Setup and add images
         let imgView = UIImageView(frame: viewSize)
         imgView.image = img
         imgView.contentMode = .ScaleAspectFit
         
         scrollView.addSubview(imgView)
-
     }
-
+    
+    // When receive same image info, ignore
+    func imageInfoPacket(count: Int) {
+        redundantPacket = true
+        print("redundant packet")
+    }
+    
+    // When receive POI info, unwind to Detail View and present new POI info
+    func POIInfoPacket(POIdata: NSData) {
+        redundantPacket = false
+        let str = POIdata.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+        performSegueWithIdentifier("ImageToDetailUnwind", sender: str)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ImageToDetailUnwind" {
+            if let destinationVC = segue.destinationViewController as? DetailViewController {
+                let str = String(sender!)
+                let POIdata = NSData(base64EncodedString: str, options: NSDataBase64DecodingOptions(rawValue: 0))
+                let json = JSON(data: POIdata!)
+                destinationVC.POIinfo = json
+                destinationVC.showPOIinfo()
+            }
+        }
+    }
+    
 }

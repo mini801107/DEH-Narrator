@@ -13,11 +13,8 @@ class GroupViewController: UIViewController {
 
     @IBOutlet weak var startButton: UIButton!
     
-    var mode: String = ""
     var serverSocket: GCDAsyncSocket?
     var clientSocket: GCDAsyncSocket?
-    var narratorService: NarratorService!
-    var narratorServiceBrowser: NarratorServiceBrowser!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,12 +27,12 @@ class GroupViewController: UIViewController {
     
 
     @IBAction func NarratorModeSelected(sender: UIButton) {
-        if mode == "Member" {
-            narratorServiceBrowser = nil
+        if Var.userMode == "Member" {
+            Var.narratorServiceBrowser = nil
         }
-        mode = "Narrator"
-        narratorService = NarratorService()
-        narratorService.startBroadcast()
+        Var.userMode = "Narrator"
+        Var.narratorService = NarratorService()
+        Var.narratorService.startBroadcast()
         
         let alert = UIAlertController(title: "開放連線", message: "等待成員連線即可開始導覽", preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "確認", style: .Default, handler: nil))
@@ -45,21 +42,21 @@ class GroupViewController: UIViewController {
     
 
     @IBAction func MemberModeSelected(sender: UIButton) {
-        if mode == "Narrator" {
-            narratorService = nil
+        if Var.userMode == "Narrator" {
+            Var.narratorService = nil
         }
-        mode = "Member"
-        narratorServiceBrowser = NarratorServiceBrowser()
-        narratorServiceBrowser.startBrowsing()
+        Var.userMode = "Member"
+        Var.narratorServiceBrowser = NarratorServiceBrowser()
+        Var.narratorServiceBrowser.startBrowsing()
         startButton.hidden = false
     }
 
     @IBAction func startButtonTapped(sender: AnyObject) {
-        if mode == "Narrator" {
+        if Var.userMode == "Narrator" {
             performSegueWithIdentifier("GroupToTable", sender: nil)
         }
-        else if mode == "Member" {
-            if narratorServiceBrowser.connectToServer == false {
+        else if Var.userMode == "Member" {
+            if Var.narratorServiceBrowser.connectToServer == false {
                 let alert = UIAlertController(title: "尚未連線", message: "請點擊重試", preferredStyle: .Alert)
                 alert.addAction(UIAlertAction(title: "確認", style: .Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
@@ -72,17 +69,11 @@ class GroupViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "GroupToTable" {
-            if let destinationVC = segue.destinationViewController as? UINavigationController {
-                if let tableVC = destinationVC.topViewController as? SearchTableViewController {
-                    tableVC.mode = mode
-                    if mode == "Narrator" {
-                        tableVC.narratorService = self.narratorService
-                    }
-                    else if mode == "Member" {
-                        tableVC.narratorServiceBrowser = self.narratorServiceBrowser
-                    }
-                }
-            }
+//            if let destinationVC = segue.destinationViewController as? UINavigationController {
+//                if let tableVC = destinationVC.topViewController as? SearchTableViewController {
+//                    
+//                }
+//            }
         }
     }
     

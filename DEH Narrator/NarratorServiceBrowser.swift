@@ -20,9 +20,11 @@ protocol PacketHandleDelegate: class {
 
 protocol ImagePacketHandleDelegate: class {
     func imagePacket(img: UIImage)
+    func imageInfoPacket(count: Int)
 }
 
 protocol VideoPacketHandleDelegate: class {
+    func textPacket(text: String)
     func videoPacket(video: NSData)
     func videoInfoPacket(length: Int)
 }
@@ -35,7 +37,7 @@ class NarratorServiceBrowser: NSObject, NSNetServiceDelegate, NSNetServiceBrowse
     
     weak var delegate: PacketHandleDelegate?
     weak var imageDelegate: ImagePacketHandleDelegate?
-    weak var videoDeledate: VideoPacketHandleDelegate?
+    weak var videoDelegate: VideoPacketHandleDelegate?
     weak var poiDelegate: POIInfoPacketHandleDelegate?
     
     internal var connectToServer: Bool = false
@@ -149,7 +151,12 @@ class NarratorServiceBrowser: NSObject, NSNetServiceDelegate, NSNetServiceBrowse
         switch packet.objectType! {
         case .textPacket :
             let text = packet.getObject() as String
-            delegate?.textPacket(text)
+            if(videoDelegate != nil) {
+                videoDelegate?.textPacket(text)
+            }
+            else if(delegate != nil) {
+                delegate?.textPacket(text)
+            }
             break
         case .imagePacket :
             let img = packet.getObject() as UIImage
@@ -161,11 +168,16 @@ class NarratorServiceBrowser: NSObject, NSNetServiceDelegate, NSNetServiceBrowse
             break
         case .videoPacket :
             let video = packet.getObject() as NSData
-            videoDeledate?.videoPacket(video)
+            videoDelegate?.videoPacket(video)
             break
         case .imageInfoPacket :
             let count = packet.getObject() as Int
-            delegate?.imageInfoPacket(count)
+            if(imageDelegate != nil) {
+                imageDelegate?.imageInfoPacket(count)
+            }
+            else if(delegate != nil) {
+                delegate?.imageInfoPacket(count)
+            }
             break
         case .audioInfoPacket :
             let length = packet.getObject() as Int
@@ -173,15 +185,15 @@ class NarratorServiceBrowser: NSObject, NSNetServiceDelegate, NSNetServiceBrowse
             break
         case .videoInfoPacket :
             let length = packet.getObject() as Int
-            videoDeledate?.videoInfoPacket(length)
+            videoDelegate?.videoInfoPacket(length)
             break
         case .POIInfoPacket :
             let POIdata = packet.getObject() as NSData
-            if(delegate != nil) {
-                delegate?.POIInfoPacket(POIdata)
-            }
-            else if(poiDelegate != nil) {
+            if(poiDelegate != nil) {
                 poiDelegate?.POIInfoPacket(POIdata)
+            }
+            else if(delegate != nil) {
+                delegate?.POIInfoPacket(POIdata)
             }
             break
         }

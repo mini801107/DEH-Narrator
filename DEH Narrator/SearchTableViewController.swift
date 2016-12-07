@@ -28,14 +28,11 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
     let locationManager = CLLocationManager()
     var currentLocation = CLLocation()
     let sendhttprequest = SendHttpRequest()
-    var mode: String = ""
     var searchingRadius: Int = 3000
     var searchingType: String = "附近景點"
     var username: String = ""
     var password: String = ""
     var dataArray = Array<JSON>()
-    var narratorService: NarratorService!
-    var narratorServiceBrowser: NarratorServiceBrowser!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,9 +44,9 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
         tableView.dataSource = self
         tableView.delegate = self
         
-        if mode == "Member" {
+        if Var.userMode == "Member" {
             searchButton.enabled = false
-            narratorServiceBrowser.poiDelegate = self
+            Var.narratorServiceBrowser.poiDelegate = self
         }
         else {
             /* Get current location */
@@ -265,11 +262,11 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
         let str = searchingType as NSString
         if str.substringWithRange(NSRange(location: 2, length: 2)) == "景點" {
             //send POI info to clients
-            if mode == "Narrator" {
+            if Var.userMode == "Narrator" {
                 do{
                     let POIdata = try dataArray[indexPath.row].rawData()
                     let POIinfoPacket = Packet(objectType: ObjectType.POIInfoPacket, object: POIdata)
-                    narratorService.sendPacket(POIinfoPacket)
+                    Var.narratorService.sendPacket(POIinfoPacket)
                 } catch {
                     print("Error sending POI info to clients")
                 }
@@ -284,15 +281,7 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "TableToDetail" {
             if let destinationVC = segue.destinationViewController as? DetailViewController {
-                destinationVC.mode = mode
                 destinationVC.POIinfo = dataArray[(sender?.integerValue)!]
-                if mode == "Narrator" {
-                    destinationVC.narratorService = self.narratorService
-                }
-                else if mode == "Member" {
-                    destinationVC.narratorServiceBrowser = self.narratorServiceBrowser
-                    self.narratorServiceBrowser = nil
-                }
             }
         }
         
@@ -308,11 +297,7 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
                     destinationVC.LOI_AOI_title = dataArray[(sender?.integerValue)!]["AOI_title"].stringValue
                     destinationVC.desc = dataArray[(sender?.integerValue)!]["AOI_description"].stringValue
                 }
-                destinationVC.mode = mode
                 destinationVC.POIset = POIset
-                if mode == "Narrator" {
-                    destinationVC.narratorService = self.narratorService
-                }
             }
         }
     }

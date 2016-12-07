@@ -8,9 +8,13 @@
 
 import UIKit
 
-class IndexViewController: UIViewController {
+struct Var {
+    static var userMode: String = ""
+    static var narratorService: NarratorService! = nil
+    static var narratorServiceBrowser: NarratorServiceBrowser! = nil
+}
 
-    var mode: String = ""
+class IndexViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,28 +26,26 @@ class IndexViewController: UIViewController {
     }
     
     @IBAction func GroupModeSelected(sender: UIButton) {
-        mode = "Group"
-        performSegueWithIdentifier("IndexToGroup", sender: mode)
+        Var.userMode = "Group"
+        performSegueWithIdentifier("IndexToGroup", sender: nil)
     }
 
     @IBAction func IndividualModeSelected(sender: UIButton) {
-        mode = "Individual"
-        performSegueWithIdentifier("IndexToTable", sender: mode)
+        Var.userMode = "Individual"
+        performSegueWithIdentifier("IndexToTable", sender: nil)
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "IndexToGroup" {
-            if let destinationVC = segue.destinationViewController as? GroupViewController {
-                destinationVC.mode = String(sender)
-            }
+            //if let destinationVC = segue.destinationViewController as? GroupViewController {
+            //}
         }
         
         if segue.identifier == "IndexToTable" {
-            if let destinationVC = segue.destinationViewController as? UINavigationController {
-                if let tableVC = destinationVC.topViewController as? SearchTableViewController {
-                    tableVC.mode = String(sender)
-                }
-            }
+            //if let destinationVC = segue.destinationViewController as? UINavigationController {
+                //if let tableVC = destinationVC.topViewController as? SearchTableViewController {
+                //}
+            //}
         }
     }
 }

@@ -9,15 +9,14 @@
 import UIKit
 import AVKit
 import AVFoundation
+import SwiftyJSON
 import CocoaAsyncSocket
 
-class VideoPlayerViewController: AVPlayerViewController, VideoPacketHandleDelegate {
+class VideoPlayerViewController: AVPlayerViewController, VideoPacketHandleDelegate, POIInfoPacketHandleDelegate {
 
-    var mode: String = ""
     var fileURL: NSURL?
     var videoPlayer: AVPlayer? = nil
-    var narratorService: NarratorService!
-    var narratorServiceBrowser: NarratorServiceBrowser!
+    var redundantPacket: Bool = false
     
     let threshold = 500000
     var videoBuffer: NSMutableData?
@@ -27,10 +26,10 @@ class VideoPlayerViewController: AVPlayerViewController, VideoPacketHandleDelega
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if mode == "Narrator" {
+        if Var.userMode == "Narrator" {
             //stream video file to clients
             let videoData = NSData(contentsOfURL: fileURL!)
-            narratorService.streamData(videoData!, type: "video")
+            Var.narratorService.streamData(videoData!, type: "video")
             
             view.backgroundColor = .blackColor()
             videoPlayer = AVPlayer(URL: fileURL!)
@@ -39,8 +38,10 @@ class VideoPlayerViewController: AVPlayerViewController, VideoPacketHandleDelega
             self.view.frame = CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height)
             videoPlayer!.play()
         }
-        else if mode == "Member" {
-            narratorServiceBrowser.videoDeledate = self
+        else if Var.userMode == "Member" {
+            redundantPacket = false
+            Var.narratorServiceBrowser.videoDelegate = self
+            Var.narratorServiceBrowser.poiDelegate = self
         }
     }
 
@@ -50,6 +51,11 @@ class VideoPlayerViewController: AVPlayerViewController, VideoPacketHandleDelega
     }
     
     func videoPacket(video: NSData) {
+        if redundantPacket == true {
+            print("drop packet")
+            return
+        }
+        
         videoPacketCount += 1
         if videoFileLength <= threshold {
             if videoPacketCount == 1 {
@@ -68,7 +74,6 @@ class VideoPlayerViewController: AVPlayerViewController, VideoPacketHandleDelega
                 self.view.frame = CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height)
                 videoPlayer!.play()
                 NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(VideoPlayerViewController.videoPlayerDidFinishPlaying(_:)), name: AVPlayerItemDidPlayToEndTimeNotification, object: self.videoPlayer?.currentItem)
-                
             }
             else {
                 videoBuffer!.appendData(video)
@@ -123,17 +128,45 @@ class VideoPlayerViewController: AVPlayerViewController, VideoPacketHandleDelega
     }
     
     func videoInfoPacket(length: Int) {
-        if videoFileLength != 0 && videoPlayer != nil {
-            videoPlayer?.pause()
-            videoPlayer = nil
+        if redundantPacket == false {
+            if videoFileLength != 0 && videoPlayer != nil {
+                videoPlayer?.pause()
+                videoPlayer = nil
+            }
+            
+            videoFileLength = length
+            videoPacketCount = 0
+            print("video length = \(videoFileLength)")
         }
-        videoFileLength = length
-        videoPacketCount = 0
-        print("video length = \(videoFileLength)")
     }
     
     func videoPlayerDidFinishPlaying(note: NSNotification) {
         videoFileLength = 0
     }
-
+    
+    // When receive same image info, ignore
+    func textPacket(text: String) {
+        redundantPacket = true
+        print("redundant packet")
+    }
+    
+    // When receive POI info, unwind to Detail View and present new POI info
+    func POIInfoPacket(POIdata: NSData) {
+        redundantPacket = false
+        let str = POIdata.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+        performSegueWithIdentifier("VideoToDetailUnwind", sender: str)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "VideoToDetailUnwind" {
+            if let destinationVC = segue.destinationViewController as? DetailViewController {
+                let str = String(sender!)
+                let POIdata = NSData(base64EncodedString: str, options: NSDataBase64DecodingOptions(rawValue: 0))
+                let json = JSON(data: POIdata!)
+                destinationVC.POIinfo = json
+                destinationVC.showPOIinfo()
+            }
+        }
+    }
+    
 }

@@ -23,14 +23,10 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate, PacketHandl
     @IBOutlet weak var descriptionTextField: UITextView!
     @IBOutlet weak var mediaButton: UIButton!
     
-    var mode: String = ""
     var POIinfo: JSON = nil
     var mediaType: String?
     var fileURL: NSURL?
     var soundData = NSData()
-    
-    var narratorService: NarratorService!
-    var narratorServiceBrowser: NarratorServiceBrowser!
     
     var audioPlayer: AVAudioPlayer? = nil
     var audioBuffer: NSMutableData?
@@ -41,11 +37,9 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate, PacketHandl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if mode == "Member" {
+        if Var.userMode == "Member" {
             mediaButton.enabled = false
-            //narratorServiceBrowser = NarratorServiceBrowser(sock: socket!)
-            //narratorServiceBrowser.startBrowsing()
-            narratorServiceBrowser.delegate = self
+            Var.narratorServiceBrowser.delegate = self
             showPOIinfo()
         }
         else {
@@ -69,7 +63,7 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate, PacketHandl
         else if mediaType == "2" {
             mediaButton.setImage(UIImage(named: "headphones"), forState: UIControlState.Normal)
             
-            if mode != "Member" {
+            if Var.userMode != "Member" {
                 //setup AVAudioPlayer
                 let mediaSet = POIinfo["media_set"].arrayValue
                 let url = mediaSet[0]["media_url"].stringValue
@@ -85,7 +79,7 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate, PacketHandl
                     print("\nError : \n"+error.localizedDescription)
                 }
             }
-            if mode == "Narrator" {
+            if Var.userMode == "Narrator" {
                 hasStreamAudioFile = false
             }
         }
@@ -97,40 +91,24 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate, PacketHandl
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "DetailToImage" {
             if let destinationVC = segue.destinationViewController as? ImageViewController {
-                destinationVC.mode = mode
                 destinationVC.picCount = (sender?.integerValue)!
                 destinationVC.mediaSet = POIinfo["media_set"].arrayValue
-                
-                if mode == "Narrator" {
-                    destinationVC.narratorService = self.narratorService
-                }
-                else if mode == "Member" {
-                    destinationVC.narratorServiceBrowser = self.narratorServiceBrowser
-                    //self.narratorServiceBrowser = nil
-                }
             }
         }
         
         if segue.identifier == "DetailToVideo" {
             if let destinationVC = segue.destinationViewController as? VideoPlayerViewController {
-                destinationVC.mode = mode
                 
-                if mode == "Narrator" {
+                if Var.userMode == "Narrator" {
                     destinationVC.fileURL = fileURL
-                    destinationVC.narratorService = self.narratorService
-                }
-                else if mode == "Member" {
-                    destinationVC.narratorServiceBrowser = self.narratorServiceBrowser
                 }
             }
         }
         
         if segue.identifier == "DetailToTableUnwind" {
-            if let destinationVC = segue.destinationViewController as? SearchTableViewController {
-                print("unwind")
-                destinationVC.narratorServiceBrowser = self.narratorServiceBrowser
-                self.narratorServiceBrowser = nil
-            }
+            //if let destinationVC = segue.destinationViewController as? SearchTableViewController {
+                
+            //}
         }
     }
 
@@ -145,9 +123,9 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate, PacketHandl
             }
             
             /* Narrator : send number of images to clients */
-            if mode == "Narrator" {
+            if Var.userMode == "Narrator" {
                 let infoPacket = Packet(objectType: ObjectType.imageInfoPacket, object: picCount)
-                narratorService.sendPacket(infoPacket)
+                Var.narratorService.sendPacket(infoPacket)
             }
 
             performSegueWithIdentifier("DetailToImage", sender: picCount)
@@ -156,8 +134,8 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate, PacketHandl
             if audioPlayer != nil {
                 if audioPlayer!.playing == false {
                     /* Narrator : stream audio file to clients */
-                    if mode == "Narrator" && hasStreamAudioFile == false {
-                        narratorService.streamData(soundData, type: "audio")
+                    if Var.userMode == "Narrator" && hasStreamAudioFile == false {
+                        Var.narratorService.streamData(soundData, type: "audio")
                         hasStreamAudioFile = true
                         print("stream audio packet")
                     }
@@ -173,9 +151,9 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate, PacketHandl
         }
         else if mediaType == "4" {  //type 4 : video(.mp4)
             /* Narrator : send notice to clients to prepare sugue to video view */
-            if mode == "Narrator" {
+            if Var.userMode == "Narrator" {
                 let textPacket = Packet(objectType: ObjectType.textPacket, object: "video")
-                narratorService.sendPacket(textPacket)
+                Var.narratorService.sendPacket(textPacket)
             }
             
             let mediaSet = POIinfo["media_set"].arrayValue
@@ -198,10 +176,20 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate, PacketHandl
 
     /******************************** Implement PacketHandleDelegate ********************************/
     func textPacket(text: String) {
+        if audioPlayer != nil {
+            if audioPlayer!.playing == true {
+                audioPlayer?.stop()
+            }
+        }
         performSegueWithIdentifier("DetailToVideo", sender: self)
     }
     
     func imageInfoPacket(count: Int) {
+        if audioPlayer != nil {
+            if audioPlayer!.playing == true {
+                audioPlayer?.stop()
+            }
+        }
         performSegueWithIdentifier("DetailToImage", sender: count)
     }
     
@@ -264,10 +252,20 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate, PacketHandl
     }
     
     func POIInfoPacket(POIdata: NSData) {
+        if audioPlayer != nil {
+            if audioPlayer!.playing == true {
+                audioPlayer?.stop()
+            }
+        }
         let json = JSON(data: POIdata)
         POIinfo = json
         showPOIinfo()
     }
     
     /************************************************************************************************/
+    
+    @IBAction func unwindToDetail(segue: UIStoryboardSegue) {
+        
+    }
+    
 }
