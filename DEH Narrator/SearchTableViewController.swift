@@ -91,7 +91,6 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
     /********************** definitions and functions of components in submit window **********************/
     @IBAction func searchingRadiusChanged(sender: AnyObject) {
         let currentValue = Int(radiusSlider.value)
-        print(currentValue)
         searchingRadius = currentValue * 1000
         searchingRadiusLabel.text = "範圍 : \(currentValue)公里"
     }
@@ -133,7 +132,6 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
                                 self.presentViewController(alert, animated: true, completion: nil)
                             }
                             else {
-                                self.loginButton.setTitle("Logout", forState: UIControlState.Normal)
                                 self.username = uname
                                 self.password = pwdTextField!.text!
                                 self.searchingTypeSelector.reloadAllComponents()
@@ -160,7 +158,6 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
             self.presentViewController(loginAlert, animated: true, completion: nil)
         }
         else {  // when user has login
-            loginButton.setTitle("Login", forState: UIControlState.Normal)
             username = ""
             password = ""
             clearTable()
@@ -212,16 +209,16 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
         let identifier = dataArray[indexPath.row]["identifier"].stringValue
         switch identifier {
         case "user" :
-            cell.identifier.image = UIImage(named: "user_50")
+            cell.identifier.image = UIImage(named: "table_icon_user")
             break
         case "expert" :
-            cell.identifier.image = UIImage(named: "expert_50")
+            cell.identifier.image = UIImage(named: "table_icon_expert")
             break
         case "docent" :
-            cell.identifier.image = UIImage(named: "docent_50")
+            cell.identifier.image = UIImage(named: "table_icon_docent")
             break
         default :
-            cell.identifier.image = UIImage(named: "default_50")
+            cell.identifier.image = UIImage(named: "table_icon_default")
             break
         }
         
@@ -231,13 +228,13 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
                 let media_type: String! = media_set[0]["media_type"].stringValue
                 switch media_type {
                 case "jpg" :
-                    cell.POIicon.image = UIImage(named: "camera")
+                    cell.POIicon.image = UIImage(named: "table_type_image")
                     break
                 case "aac" :
-                    cell.POIicon.image = UIImage(named: "headphones")
+                    cell.POIicon.image = UIImage(named: "table_type_audio")
                     break
                 case "mp4" :
-                    cell.POIicon.image = UIImage(named: "video_camera")
+                    cell.POIicon.image = UIImage(named: "table_type_video")
                     break
                 default :
                     cell.POIicon.image = nil

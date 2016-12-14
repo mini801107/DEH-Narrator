@@ -40,6 +40,7 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate, PacketHandl
         if Var.userMode == "Member" {
             mediaButton.enabled = false
             Var.narratorServiceBrowser.delegate = self
+            Var.narratorServiceBrowser.poiDelegate = nil
             showPOIinfo()
         }
         else {
@@ -58,10 +59,10 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate, PacketHandl
         //setup mediaButton's image corresponding to media type
         mediaType = POIinfo["media_set"][0]["media_format"].stringValue
         if mediaType == "1" {
-            mediaButton.setImage(UIImage(named: "camera"), forState: UIControlState.Normal)
+            mediaButton.setImage(UIImage(named: "detail_button_image"), forState: UIControlState.Normal)
         }
         else if mediaType == "2" {
-            mediaButton.setImage(UIImage(named: "headphones"), forState: UIControlState.Normal)
+            mediaButton.setImage(UIImage(named: "detail_button_audio"), forState: UIControlState.Normal)
             
             if Var.userMode != "Member" {
                 //setup AVAudioPlayer
@@ -84,7 +85,7 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate, PacketHandl
             }
         }
         else if mediaType == "4" {
-            mediaButton.setImage(UIImage(named: "video_camera"), forState: UIControlState.Normal)
+            mediaButton.setImage(UIImage(named: "detail_button_video"), forState: UIControlState.Normal)
         }
     }
     
@@ -141,11 +142,11 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate, PacketHandl
                     }
                     
                     audioPlayer!.play()
-                    mediaButton.setImage(UIImage(named: "pause"), forState: UIControlState.Normal)
+                    mediaButton.setImage(UIImage(named: "detail_button_pause"), forState: UIControlState.Normal)
                 }
                 else {
                     audioPlayer!.pause()
-                    mediaButton.setImage(UIImage(named: "play"), forState: UIControlState.Normal)
+                    mediaButton.setImage(UIImage(named: "detail_button_play"), forState: UIControlState.Normal)
                 }
             }
         }
@@ -165,7 +166,7 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate, PacketHandl
     }
     
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
-        mediaButton.setImage(UIImage(named: "headphones"), forState: UIControlState.Normal)
+        mediaButton.setImage(UIImage(named: "detail_button_audio"), forState: UIControlState.Normal)
     }
     
     override func didReceiveMemoryWarning() {
@@ -208,7 +209,7 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate, PacketHandl
                     audioPlayer!.delegate = self
                     print("Initial audio player")
                     audioPlayer!.play()
-                    mediaButton.setImage(UIImage(named: "pause"), forState: UIControlState.Normal)
+                    mediaButton.setImage(UIImage(named: "detail_button_pause"), forState: UIControlState.Normal)
                     mediaButton.enabled = true
                 } catch {
                     print("Error initialing audio player")
@@ -233,7 +234,7 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate, PacketHandl
                         audioPlayer!.delegate = self
                         print("Initial audio player")
                         audioPlayer!.play()
-                        mediaButton.setImage(UIImage(named: "pause"), forState: UIControlState.Normal)
+                        mediaButton.setImage(UIImage(named: "detail_button_pause"), forState: UIControlState.Normal)
                         mediaButton.enabled = true
                     } catch {
                         print("Error initialing audio player")

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C5C88BB8F3F3513113818CE /* Pods_DEH_Narrator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187D305F0112DFADA1C11528 /* Pods_DEH_Narrator.framework */; };
+		A03AC2991E00EB0C001AA155 /* NavigetionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03AC2981E00EB0C001AA155 /* NavigetionViewController.swift */; };
 		A048895A1DE9EEF00065FBEB /* SimpleCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04889591DE9EEF00065FBEB /* SimpleCustomCell.swift */; };
 		A054E1CA1DEB03E0005836A3 /* NarratorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A054E1C91DEB03E0005836A3 /* NarratorService.swift */; };
 		A054E1CC1DEB03F4005836A3 /* NarratorServiceBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A054E1CB1DEB03F4005836A3 /* NarratorServiceBrowser.swift */; };
@@ -50,6 +51,7 @@
 		187D305F0112DFADA1C11528 /* Pods_DEH_Narrator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DEH_Narrator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		588D5B3E2F7EC116DA42DF42 /* Pods-DEH Narrator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DEH Narrator.release.xcconfig"; path = "Pods/Target Support Files/Pods-DEH Narrator/Pods-DEH Narrator.release.xcconfig"; sourceTree = "<group>"; };
 		9468CA76229851DC4B3E205B /* Pods-DEH Narrator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DEH Narrator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DEH Narrator/Pods-DEH Narrator.debug.xcconfig"; sourceTree = "<group>"; };
+		A03AC2981E00EB0C001AA155 /* NavigetionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigetionViewController.swift; sourceTree = "<group>"; };
 		A04889591DE9EEF00065FBEB /* SimpleCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleCustomCell.swift; sourceTree = "<group>"; };
 		A054E1C91DEB03E0005836A3 /* NarratorService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NarratorService.swift; sourceTree = "<group>"; };
 		A054E1CB1DEB03F4005836A3 /* NarratorServiceBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NarratorServiceBrowser.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				A084B0D61DE9402F009F6FD4 /* Main.storyboard */,
 				A084B1001DE9446C009F6FD4 /* IndexViewController.swift */,
 				A084B1041DE944EA009F6FD4 /* GroupViewController.swift */,
+				A03AC2981E00EB0C001AA155 /* NavigetionViewController.swift */,
 				A084B1061DE9450E009F6FD4 /* SearchTableViewController.swift */,
 				A084B1081DE94522009F6FD4 /* DetailViewController.swift */,
 				A084B10A1DE94541009F6FD4 /* ImageViewController.swift */,
@@ -385,6 +388,7 @@
 				A084B1151DE97F7B009F6FD4 /* CustomCell.swift in Sources */,
 				A054E1CE1DEB0404005836A3 /* Packet.swift in Sources */,
 				A054E1CA1DEB03E0005836A3 /* NarratorService.swift in Sources */,
+				A03AC2991E00EB0C001AA155 /* NavigetionViewController.swift in Sources */,
 				A084B1071DE9450E009F6FD4 /* SearchTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -55,16 +55,16 @@ class InfoViewController: UIViewController, UITableViewDelegate, UITableViewData
         let identifier = POIset[indexPath.row]["identifier"].stringValue
         switch identifier {
         case "user" :
-            cell.identifier.image = UIImage(named: "user_50")
+            cell.identifier.image = UIImage(named: "table_icon_user")
             break
         case "expert" :
-            cell.identifier.image = UIImage(named: "expert_50")
+            cell.identifier.image = UIImage(named: "table_icon_expert")
             break
         case "docent" :
-            cell.identifier.image = UIImage(named: "docent_50")
+            cell.identifier.image = UIImage(named: "table_icon_docent")
             break
         default :
-            cell.identifier.image = UIImage(named: "default_50")
+            cell.identifier.image = UIImage(named: "table_icon_default")
             break
         }
         
