@@ -43,6 +43,14 @@ class VideoPlayerViewController: AVPlayerViewController, VideoPacketHandleDelega
             Var.narratorServiceBrowser.videoDelegate = self
             Var.narratorServiceBrowser.poiDelegate = self
         }
+        else {
+            view.backgroundColor = .blackColor()
+            videoPlayer = AVPlayer(URL: fileURL!)
+            self.player = videoPlayer
+            self.showsPlaybackControls = true
+            self.view.frame = CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height)
+            videoPlayer!.play()
+        }
     }
 
     override func didReceiveMemoryWarning() {

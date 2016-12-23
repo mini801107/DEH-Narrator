@@ -241,9 +241,9 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
                     break
                 }
             }
-        }
-        else {
-            cell.POIicon.image = nil
+            else {
+                cell.POIicon.image = nil
+            }
         }
         return cell
     }

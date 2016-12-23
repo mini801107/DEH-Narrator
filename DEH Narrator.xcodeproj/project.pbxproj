@@ -8,7 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		0C5C88BB8F3F3513113818CE /* Pods_DEH_Narrator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187D305F0112DFADA1C11528 /* Pods_DEH_Narrator.framework */; };
+		A02285241E0A220800AB4472 /* ARHeiB5Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A02285181E0A21D100AB4472 /* ARHeiB5Bold.otf */; };
+		A02285251E0A220B00AB4472 /* ARHeiB5ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A02285191E0A21D100AB4472 /* ARHeiB5ExtraBold.otf */; };
+		A02285261E0A220D00AB4472 /* ARHeiB5Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = A022851A1E0A21D100AB4472 /* ARHeiB5Heavy.otf */; };
+		A02285271E0A221000AB4472 /* ARHeiB5Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = A022851B1E0A21D100AB4472 /* ARHeiB5Light.otf */; };
+		A02285281E0A221200AB4472 /* ARHeiB5Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = A022851C1E0A21D100AB4472 /* ARHeiB5Medium.otf */; };
+		A02285291E0A221400AB4472 /* ARHeiB5Ultra.otf in Resources */ = {isa = PBXBuildFile; fileRef = A022851D1E0A21D100AB4472 /* ARHeiB5Ultra.otf */; };
+		A022852A1E0A221600AB4472 /* ARYuanB5Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A022851E1E0A21D100AB4472 /* ARYuanB5Bold.otf */; };
+		A022852B1E0A221800AB4472 /* ARYuanB5ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A022851F1E0A21D100AB4472 /* ARYuanB5ExtraBold.otf */; };
+		A022852C1E0A221A00AB4472 /* ARYuanB5Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = A02285201E0A21D100AB4472 /* ARYuanB5Heavy.otf */; };
+		A022852D1E0A221C00AB4472 /* ARYuanB5Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = A02285211E0A21D100AB4472 /* ARYuanB5Light.otf */; };
+		A022852E1E0A221F00AB4472 /* ARYuanB5Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = A02285221E0A21D100AB4472 /* ARYuanB5Medium.otf */; };
+		A022852F1E0A222100AB4472 /* ARYuanB5Ultra.otf in Resources */ = {isa = PBXBuildFile; fileRef = A02285231E0A21D100AB4472 /* ARYuanB5Ultra.otf */; };
 		A03AC2991E00EB0C001AA155 /* NavigetionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03AC2981E00EB0C001AA155 /* NavigetionViewController.swift */; };
+		A03AC2A51E024EC3001AA155 /* segoeui.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A03AC29D1E024EC3001AA155 /* segoeui.ttf */; };
+		A03AC2A61E024EC3001AA155 /* segoeuib.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A03AC29E1E024EC3001AA155 /* segoeuib.ttf */; };
+		A03AC2A71E024EC3001AA155 /* segoeuii.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A03AC29F1E024EC3001AA155 /* segoeuii.ttf */; };
+		A03AC2A81E024EC3001AA155 /* segoeuil.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A03AC2A01E024EC3001AA155 /* segoeuil.ttf */; };
+		A03AC2A91E024EC3001AA155 /* SEGOEUISL.TTF in Resources */ = {isa = PBXBuildFile; fileRef = A03AC2A11E024EC3001AA155 /* SEGOEUISL.TTF */; };
+		A03AC2AA1E024EC3001AA155 /* segoeuiz.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A03AC2A21E024EC3001AA155 /* segoeuiz.ttf */; };
+		A03AC2AB1E024EC3001AA155 /* seguisb.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A03AC2A31E024EC3001AA155 /* seguisb.ttf */; };
+		A03AC2AC1E024EC3001AA155 /* seguisym.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A03AC2A41E024EC3001AA155 /* seguisym.ttf */; };
 		A048895A1DE9EEF00065FBEB /* SimpleCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04889591DE9EEF00065FBEB /* SimpleCustomCell.swift */; };
 		A054E1CA1DEB03E0005836A3 /* NarratorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A054E1C91DEB03E0005836A3 /* NarratorService.swift */; };
 		A054E1CC1DEB03F4005836A3 /* NarratorServiceBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A054E1CB1DEB03F4005836A3 /* NarratorServiceBrowser.swift */; };
@@ -51,7 +71,27 @@
 		187D305F0112DFADA1C11528 /* Pods_DEH_Narrator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DEH_Narrator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		588D5B3E2F7EC116DA42DF42 /* Pods-DEH Narrator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DEH Narrator.release.xcconfig"; path = "Pods/Target Support Files/Pods-DEH Narrator/Pods-DEH Narrator.release.xcconfig"; sourceTree = "<group>"; };
 		9468CA76229851DC4B3E205B /* Pods-DEH Narrator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DEH Narrator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DEH Narrator/Pods-DEH Narrator.debug.xcconfig"; sourceTree = "<group>"; };
+		A02285181E0A21D100AB4472 /* ARHeiB5Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ARHeiB5Bold.otf; sourceTree = "<group>"; };
+		A02285191E0A21D100AB4472 /* ARHeiB5ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ARHeiB5ExtraBold.otf; sourceTree = "<group>"; };
+		A022851A1E0A21D100AB4472 /* ARHeiB5Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ARHeiB5Heavy.otf; sourceTree = "<group>"; };
+		A022851B1E0A21D100AB4472 /* ARHeiB5Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ARHeiB5Light.otf; sourceTree = "<group>"; };
+		A022851C1E0A21D100AB4472 /* ARHeiB5Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ARHeiB5Medium.otf; sourceTree = "<group>"; };
+		A022851D1E0A21D100AB4472 /* ARHeiB5Ultra.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ARHeiB5Ultra.otf; sourceTree = "<group>"; };
+		A022851E1E0A21D100AB4472 /* ARYuanB5Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ARYuanB5Bold.otf; sourceTree = "<group>"; };
+		A022851F1E0A21D100AB4472 /* ARYuanB5ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ARYuanB5ExtraBold.otf; sourceTree = "<group>"; };
+		A02285201E0A21D100AB4472 /* ARYuanB5Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ARYuanB5Heavy.otf; sourceTree = "<group>"; };
+		A02285211E0A21D100AB4472 /* ARYuanB5Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ARYuanB5Light.otf; sourceTree = "<group>"; };
+		A02285221E0A21D100AB4472 /* ARYuanB5Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ARYuanB5Medium.otf; sourceTree = "<group>"; };
+		A02285231E0A21D100AB4472 /* ARYuanB5Ultra.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ARYuanB5Ultra.otf; sourceTree = "<group>"; };
 		A03AC2981E00EB0C001AA155 /* NavigetionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigetionViewController.swift; sourceTree = "<group>"; };
+		A03AC29D1E024EC3001AA155 /* segoeui.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = segoeui.ttf; sourceTree = "<group>"; };
+		A03AC29E1E024EC3001AA155 /* segoeuib.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = segoeuib.ttf; sourceTree = "<group>"; };
+		A03AC29F1E024EC3001AA155 /* segoeuii.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = segoeuii.ttf; sourceTree = "<group>"; };
+		A03AC2A01E024EC3001AA155 /* segoeuil.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = segoeuil.ttf; sourceTree = "<group>"; };
+		A03AC2A11E024EC3001AA155 /* SEGOEUISL.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = SEGOEUISL.TTF; sourceTree = "<group>"; };
+		A03AC2A21E024EC3001AA155 /* segoeuiz.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = segoeuiz.ttf; sourceTree = "<group>"; };
+		A03AC2A31E024EC3001AA155 /* seguisb.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = seguisb.ttf; sourceTree = "<group>"; };
+		A03AC2A41E024EC3001AA155 /* seguisym.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = seguisym.ttf; sourceTree = "<group>"; };
 		A04889591DE9EEF00065FBEB /* SimpleCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleCustomCell.swift; sourceTree = "<group>"; };
 		A054E1C91DEB03E0005836A3 /* NarratorService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NarratorService.swift; sourceTree = "<group>"; };
 		A054E1CB1DEB03F4005836A3 /* NarratorServiceBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NarratorServiceBrowser.swift; sourceTree = "<group>"; };
@@ -123,9 +163,37 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A03AC29C1E024E92001AA155 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A02285181E0A21D100AB4472 /* ARHeiB5Bold.otf */,
+				A02285191E0A21D100AB4472 /* ARHeiB5ExtraBold.otf */,
+				A022851A1E0A21D100AB4472 /* ARHeiB5Heavy.otf */,
+				A022851B1E0A21D100AB4472 /* ARHeiB5Light.otf */,
+				A022851C1E0A21D100AB4472 /* ARHeiB5Medium.otf */,
+				A022851D1E0A21D100AB4472 /* ARHeiB5Ultra.otf */,
+				A022851E1E0A21D100AB4472 /* ARYuanB5Bold.otf */,
+				A022851F1E0A21D100AB4472 /* ARYuanB5ExtraBold.otf */,
+				A02285201E0A21D100AB4472 /* ARYuanB5Heavy.otf */,
+				A02285211E0A21D100AB4472 /* ARYuanB5Light.otf */,
+				A02285221E0A21D100AB4472 /* ARYuanB5Medium.otf */,
+				A02285231E0A21D100AB4472 /* ARYuanB5Ultra.otf */,
+				A03AC29D1E024EC3001AA155 /* segoeui.ttf */,
+				A03AC29E1E024EC3001AA155 /* segoeuib.ttf */,
+				A03AC29F1E024EC3001AA155 /* segoeuii.ttf */,
+				A03AC2A01E024EC3001AA155 /* segoeuil.ttf */,
+				A03AC2A11E024EC3001AA155 /* SEGOEUISL.TTF */,
+				A03AC2A21E024EC3001AA155 /* segoeuiz.ttf */,
+				A03AC2A31E024EC3001AA155 /* seguisb.ttf */,
+				A03AC2A41E024EC3001AA155 /* seguisym.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		A084B0C61DE9402E009F6FD4 = {
 			isa = PBXGroup;
 			children = (
+				A03AC29C1E024E92001AA155 /* Resources */,
 				A084B0D11DE9402F009F6FD4 /* DEH Narrator */,
 				A084B0E61DE9402F009F6FD4 /* DEH NarratorTests */,
 				A084B0F11DE9402F009F6FD4 /* DEH NarratorUITests */,
@@ -300,8 +368,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A022852D1E0A221C00AB4472 /* ARYuanB5Light.otf in Resources */,
+				A03AC2A71E024EC3001AA155 /* segoeuii.ttf in Resources */,
+				A03AC2AB1E024EC3001AA155 /* seguisb.ttf in Resources */,
+				A03AC2A91E024EC3001AA155 /* SEGOEUISL.TTF in Resources */,
+				A02285241E0A220800AB4472 /* ARHeiB5Bold.otf in Resources */,
+				A03AC2A51E024EC3001AA155 /* segoeui.ttf in Resources */,
 				A084B0DD1DE9402F009F6FD4 /* LaunchScreen.storyboard in Resources */,
+				A022852E1E0A221F00AB4472 /* ARYuanB5Medium.otf in Resources */,
+				A02285261E0A220D00AB4472 /* ARHeiB5Heavy.otf in Resources */,
+				A03AC2A61E024EC3001AA155 /* segoeuib.ttf in Resources */,
+				A022852C1E0A221A00AB4472 /* ARYuanB5Heavy.otf in Resources */,
+				A022852F1E0A222100AB4472 /* ARYuanB5Ultra.otf in Resources */,
 				A084B0DA1DE9402F009F6FD4 /* Assets.xcassets in Resources */,
+				A02285281E0A221200AB4472 /* ARHeiB5Medium.otf in Resources */,
+				A02285291E0A221400AB4472 /* ARHeiB5Ultra.otf in Resources */,
+				A022852B1E0A221800AB4472 /* ARYuanB5ExtraBold.otf in Resources */,
+				A02285271E0A221000AB4472 /* ARHeiB5Light.otf in Resources */,
+				A03AC2AC1E024EC3001AA155 /* seguisym.ttf in Resources */,
+				A03AC2AA1E024EC3001AA155 /* segoeuiz.ttf in Resources */,
+				A02285251E0A220B00AB4472 /* ARHeiB5ExtraBold.otf in Resources */,
+				A022852A1E0A221600AB4472 /* ARYuanB5Bold.otf in Resources */,
+				A03AC2A81E024EC3001AA155 /* segoeuil.ttf in Resources */,
 				A084B0D81DE9402F009F6FD4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

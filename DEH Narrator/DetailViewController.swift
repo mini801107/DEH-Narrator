@@ -87,6 +87,9 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate, PacketHandl
         else if mediaType == "4" {
             mediaButton.setImage(UIImage(named: "detail_button_video"), forState: UIControlState.Normal)
         }
+        else {
+            mediaButton.hidden = true
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -99,8 +102,7 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate, PacketHandl
         
         if segue.identifier == "DetailToVideo" {
             if let destinationVC = segue.destinationViewController as? VideoPlayerViewController {
-                
-                if Var.userMode == "Narrator" {
+                if Var.userMode != "Member" {
                     destinationVC.fileURL = fileURL
                 }
             }
