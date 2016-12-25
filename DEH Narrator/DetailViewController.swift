@@ -22,6 +22,7 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate, PacketHandl
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var descriptionTextField: UITextView!
     @IBOutlet weak var mediaButton: UIButton!
+    @IBOutlet weak var audioNavigationButton: UIButton!
     
     var POIinfo: JSON = nil
     var mediaType: String?
@@ -29,6 +30,7 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate, PacketHandl
     var soundData = NSData()
     
     var audioPlayer: AVAudioPlayer? = nil
+    var audioNavigationPlayer: AVAudioPlayer? = nil
     var audioBuffer: NSMutableData?
     var audioFileLength: Int = 0
     var audioPacketCount: Int = -1
@@ -45,6 +47,10 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate, PacketHandl
         }
         else {
             showPOIinfo()
+        }
+        
+        if Var.userMode != "Individual" {
+            audioNavigationButton.hidden = true
         }
     }
     
@@ -90,6 +96,31 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate, PacketHandl
         else {
             mediaButton.hidden = true
         }
+        
+        //If there is an audio navigation, display the playing button
+        let mediaSet = POIinfo["media_set"].arrayValue
+        if mediaSet[mediaSet.count-1]["media_format"].stringValue == "8" { //type 8 : audio navigation(.acc)
+            let url = mediaSet[mediaSet.count-1]["media_url"].stringValue
+            let fileURL = NSURL(string: url)
+            let soundData = NSData(contentsOfURL: fileURL!)
+            
+            do {
+                audioNavigationPlayer = try AVAudioPlayer(data: soundData!)
+                audioNavigationPlayer!.prepareToPlay()
+                audioNavigationPlayer!.volume = 1.0
+                audioNavigationPlayer!.delegate = self
+            } catch let error as NSError {
+                print("\nError : \n"+error.localizedDescription)
+            }
+            
+            audioNavigationButton.addTarget(self, action: #selector(DetailViewController.PlayNavigationAudio(_:)), forControlEvents: .TouchUpInside)
+            audioNavigationButton.enabled = true
+            audioNavigationButton.hidden = false
+        }
+        else {
+            audioNavigationButton.enabled = false
+        }
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -110,7 +141,7 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate, PacketHandl
         
         if segue.identifier == "DetailToTableUnwind" {
             //if let destinationVC = segue.destinationViewController as? SearchTableViewController {
-                
+
             //}
         }
     }
@@ -169,6 +200,19 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate, PacketHandl
     
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
         mediaButton.setImage(UIImage(named: "detail_button_audio"), forState: UIControlState.Normal)
+    }
+    
+    @IBAction func PlayNavigationAudio(sender: AnyObject?) {
+        if audioNavigationPlayer?.playing == false {
+            audioNavigationPlayer!.play()
+        }
+        else {
+            audioNavigationPlayer!.pause()
+        }
+    }
+    
+    func navigationAudioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
+        
     }
     
     override func didReceiveMemoryWarning() {

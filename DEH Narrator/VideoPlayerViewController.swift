@@ -25,20 +25,8 @@ class VideoPlayerViewController: AVPlayerViewController, VideoPacketHandleDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if Var.userMode == "Narrator" {
-            //stream video file to clients
-            let videoData = NSData(contentsOfURL: fileURL!)
-            Var.narratorService.streamData(videoData!, type: "video")
-            
-            view.backgroundColor = .blackColor()
-            videoPlayer = AVPlayer(URL: fileURL!)
-            self.player = videoPlayer
-            self.showsPlaybackControls = true
-            self.view.frame = CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height)
-            videoPlayer!.play()
-        }
-        else if Var.userMode == "Member" {
+        
+        if Var.userMode == "Member" {
             redundantPacket = false
             Var.narratorServiceBrowser.videoDelegate = self
             Var.narratorServiceBrowser.poiDelegate = self
@@ -50,6 +38,12 @@ class VideoPlayerViewController: AVPlayerViewController, VideoPacketHandleDelega
             self.showsPlaybackControls = true
             self.view.frame = CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height)
             videoPlayer!.play()
+        }
+        
+        if Var.userMode == "Narrator" {
+            //stream video file to clients
+            let videoData = NSData(contentsOfURL: fileURL!)
+            Var.narratorService.streamData(videoData!, type: "video")
         }
     }
 

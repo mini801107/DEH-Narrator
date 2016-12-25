@@ -56,6 +56,13 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
             self.locationManager.startUpdatingLocation()
         }
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        if Var.userMode == "Member" {
+            searchButton.enabled = false
+            Var.narratorServiceBrowser.poiDelegate = self
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -171,6 +178,11 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
     @IBAction func searchButtonTapped(sender: AnyObject) {
         settingsWindow.hidden = false
     }
+    
+    @IBAction func homeButtonTapped(sender: AnyObject) {
+        performSegueWithIdentifier("BackToIndexUnwind", sender: self)
+    }
+    
     /******************************************************************************************************/
     
     
@@ -258,6 +270,17 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let str = searchingType as NSString
         if str.substringWithRange(NSRange(location: 2, length: 2)) == "景點" {
+            // show alert when selecting unpublic POI
+            if dataArray[indexPath.row]["identifier"].stringValue == "docent" {
+                if dataArray[indexPath.row]["open"].boolValue == false {
+                    let alert = UIAlertController(title: "此景點為私人景點", message: "無法觀看該景點內容\n詳細內容請聯絡導覽員：\(dataArray[indexPath.row]["rights"].stringValue)", preferredStyle: .Alert)
+                    alert.addAction(UIAlertAction(title: "確認", style: .Default, handler: nil))
+                    self.presentViewController(alert, animated: true, completion: nil)
+                    
+                    return
+                }
+            }
+            
             //send POI info to clients
             if Var.userMode == "Narrator" {
                 do{
@@ -296,6 +319,14 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
                 }
                 destinationVC.POIset = POIset
             }
+        }
+        if segue.identifier == "BackToIndexUnwind" {
+            dataArray.removeAll()
+            username = ""
+            password = ""
+            Var.narratorService = nil
+            Var.narratorServiceBrowser = nil
+            Var.userMode = ""
         }
     }
     /******************************************************************************************************/
