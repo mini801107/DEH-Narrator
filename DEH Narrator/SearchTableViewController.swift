@@ -270,17 +270,6 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let str = searchingType as NSString
         if str.substringWithRange(NSRange(location: 2, length: 2)) == "景點" {
-            // show alert when selecting unpublic POI
-            if dataArray[indexPath.row]["identifier"].stringValue == "docent" {
-                if dataArray[indexPath.row]["open"].boolValue == false {
-                    let alert = UIAlertController(title: "此景點為私人景點", message: "無法觀看該景點內容\n詳細內容請聯絡導覽員：\(dataArray[indexPath.row]["rights"].stringValue)", preferredStyle: .Alert)
-                    alert.addAction(UIAlertAction(title: "確認", style: .Default, handler: nil))
-                    self.presentViewController(alert, animated: true, completion: nil)
-                    
-                    return
-                }
-            }
-            
             //send POI info to clients
             if Var.userMode == "Narrator" {
                 do{
@@ -312,10 +301,12 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
                 if str.substringWithRange(NSRange(location: 2, length: 2)) == "景線" {
                     destinationVC.LOI_AOI_title = dataArray[(sender?.integerValue)!]["LOI_title"].stringValue
                     destinationVC.desc = dataArray[(sender?.integerValue)!]["LOI_description"].stringValue
+                    destinationVC.rights = dataArray[(sender?.integerValue)!]["rights"].stringValue
                 }
                 else if str.substringWithRange(NSRange(location: 2, length: 2)) == "景區" {
                     destinationVC.LOI_AOI_title = dataArray[(sender?.integerValue)!]["AOI_title"].stringValue
                     destinationVC.desc = dataArray[(sender?.integerValue)!]["AOI_description"].stringValue
+                    destinationVC.rights = dataArray[(sender?.integerValue)!]["rights"].stringValue
                 }
                 destinationVC.POIset = POIset
             }
@@ -364,7 +355,7 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
         if str.substringWithRange(NSRange(location: 0, length: 2)) == "附近" {
             var url = String()
             if searchingType == "附近景點" {
-                url = "https://api.deh.csie.ncku.edu.tw/api/v1/pois?"
+                url = "https://api.deh.csie.ncku.edu.tw/api/v1/expert/pois?"
                 url += ("lat=" + "\(coordinate.latitude)&lng=" + "\(coordinate.longitude)&dis=" + "\(searchingRadius)")
             }
             else if searchingType == "附近景線" {

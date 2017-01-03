@@ -22,6 +22,7 @@ class InfoViewController: UIViewController, UITableViewDelegate, UITableViewData
     var POIinfo: JSON = nil
     var desc: String = ""
     var LOI_AOI_title: String = "景線名稱"
+    var rights: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +73,17 @@ class InfoViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // show alert when selecting unpublic POI
+        if POIset[indexPath.row]["identifier"].stringValue == "docent" {
+            if POIset[indexPath.row]["open"].boolValue == false {
+                let alert = UIAlertController(title: "此景點為私人景點", message: "無法觀看該景點內容\n詳細內容請聯絡導覽員：\(rights)", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "確認", style: .Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+                
+                return
+            }
+        }
+        
         sendhttprequest.authorization(){ token in
             let id = self.POIset[indexPath.row]["id"].stringValue
             let specific_poi_function = "https://api.deh.csie.ncku.edu.tw/api/v1/pois/search" + "?q=" + id

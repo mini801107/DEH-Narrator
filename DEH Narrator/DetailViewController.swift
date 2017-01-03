@@ -99,7 +99,11 @@ class DetailViewController: UIViewController, AVAudioPlayerDelegate, PacketHandl
         
         //If there is an audio navigation, display the playing button
         let mediaSet = POIinfo["media_set"].arrayValue
-        if mediaSet[mediaSet.count-1]["media_format"].stringValue == "8" { //type 8 : audio navigation(.acc)
+        var type: String = ""
+        if mediaSet.count > 0 {
+            type = mediaSet[mediaSet.count-1]["media_format"].stringValue
+        }
+        if type == "8" { //type 8 : audio navigation(.acc)
             let url = mediaSet[mediaSet.count-1]["media_url"].stringValue
             let fileURL = NSURL(string: url)
             let soundData = NSData(contentsOfURL: fileURL!)
