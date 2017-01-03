@@ -257,6 +257,10 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
                 cell.POIicon.image = nil
             }
         }
+        else {
+            cell.POIicon.image = nil
+        }
+        
         return cell
     }
     
@@ -355,7 +359,7 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
         if str.substringWithRange(NSRange(location: 0, length: 2)) == "附近" {
             var url = String()
             if searchingType == "附近景點" {
-                url = "https://api.deh.csie.ncku.edu.tw/api/v1/expert/pois?"
+                url = "https://api.deh.csie.ncku.edu.tw/api/v1/pois?"
                 url += ("lat=" + "\(coordinate.latitude)&lng=" + "\(coordinate.longitude)&dis=" + "\(searchingRadius)")
             }
             else if searchingType == "附近景線" {
