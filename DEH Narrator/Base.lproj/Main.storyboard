@@ -76,7 +76,8 @@
                                     <constraint firstAttribute="width" constant="100" id="oli-Cp-zkU"/>
                                     <constraint firstAttribute="width" constant="100" id="wev-kR-Y71"/>
                                 </constraints>
-                                <state key="normal" image="index_button_group"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="群組導覽" backgroundImage="index_button"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="RCG-EB-Q9B"/>
@@ -137,7 +138,8 @@
                                     <constraint firstAttribute="height" constant="25" id="nFP-UB-ThA"/>
                                     <constraint firstAttribute="height" constant="30" id="v3h-fN-n1i"/>
                                 </constraints>
-                                <state key="normal" image="index_button_individaual"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="個人導覽" backgroundImage="index_button"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="74g-mQ-vuR"/>
@@ -454,7 +456,10 @@
                                     <constraint firstAttribute="height" constant="40" id="fea-wf-wQ1"/>
                                     <constraint firstAttribute="width" constant="120" id="qJx-JJ-EBL"/>
                                 </constraints>
-                                <state key="normal" image="group_button_narrator"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="導覽員" backgroundImage="group_button_narrator2">
+                                    <color key="titleColor" red="0.10588235294117647" green="0.19215686274509805" blue="0.32156862745098042" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="5J0-en-jum"/>
@@ -506,7 +511,10 @@
                                     <constraint firstAttribute="height" constant="40" id="UZj-A0-uhG"/>
                                     <constraint firstAttribute="height" constant="40" id="aqS-8E-hza"/>
                                 </constraints>
-                                <state key="normal" image="group_button_member"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="成   員" backgroundImage="group_button_member2">
+                                    <color key="titleColor" red="0.1058823529" green="0.19215686269999999" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="A0C-XN-g2V"/>
@@ -962,6 +970,15 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="2Mz-zb-ECx"/>
+                                        <exclude reference="45a-Fx-Zi4"/>
+                                        <exclude reference="Jhr-wQ-Cfu"/>
+                                        <exclude reference="dlj-BR-M8D"/>
+                                        <exclude reference="os7-D5-mic"/>
+                                        <exclude reference="p7H-LX-Vic"/>
+                                        <exclude reference="qUQ-E2-e4b"/>
+                                        <exclude reference="sI3-q0-0mU"/>
+                                        <exclude reference="x4i-HX-X8n"/>
                                         <exclude reference="EXA-tO-bXF"/>
                                         <exclude reference="FVO-DB-DuQ"/>
                                         <exclude reference="MOQ-bY-R8b"/>
@@ -972,26 +989,17 @@
                                         <exclude reference="sIT-Q1-9VZ"/>
                                         <exclude reference="tU9-Rn-t5Q"/>
                                         <exclude reference="tbg-h6-t7S"/>
-                                        <exclude reference="2Mz-zb-ECx"/>
-                                        <exclude reference="45a-Fx-Zi4"/>
-                                        <exclude reference="Jhr-wQ-Cfu"/>
-                                        <exclude reference="dlj-BR-M8D"/>
-                                        <exclude reference="os7-D5-mic"/>
-                                        <exclude reference="p7H-LX-Vic"/>
-                                        <exclude reference="qUQ-E2-e4b"/>
-                                        <exclude reference="sI3-q0-0mU"/>
-                                        <exclude reference="x4i-HX-X8n"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
                                     <mask key="constraints">
+                                        <include reference="Jhr-wQ-Cfu"/>
+                                        <include reference="p7H-LX-Vic"/>
+                                        <include reference="sI3-q0-0mU"/>
                                         <include reference="EXA-tO-bXF"/>
                                         <include reference="MOQ-bY-R8b"/>
                                         <include reference="UyA-dW-1fs"/>
                                         <include reference="qDX-aN-KTH"/>
-                                        <include reference="Jhr-wQ-Cfu"/>
-                                        <include reference="p7H-LX-Vic"/>
-                                        <include reference="sI3-q0-0mU"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
@@ -1000,6 +1008,12 @@
                                         <include reference="9sO-Ip-T9W"/>
                                     </mask>
                                     <mask key="constraints">
+                                        <include reference="2Mz-zb-ECx"/>
+                                        <include reference="45a-Fx-Zi4"/>
+                                        <exclude reference="Jhr-wQ-Cfu"/>
+                                        <include reference="dlj-BR-M8D"/>
+                                        <exclude reference="p7H-LX-Vic"/>
+                                        <exclude reference="sI3-q0-0mU"/>
                                         <exclude reference="EXA-tO-bXF"/>
                                         <include reference="FVO-DB-DuQ"/>
                                         <exclude reference="MOQ-bY-R8b"/>
@@ -1007,22 +1021,16 @@
                                         <include reference="aFI-zT-O2Q"/>
                                         <exclude reference="qDX-aN-KTH"/>
                                         <include reference="tU9-Rn-t5Q"/>
-                                        <include reference="2Mz-zb-ECx"/>
-                                        <include reference="45a-Fx-Zi4"/>
-                                        <exclude reference="Jhr-wQ-Cfu"/>
-                                        <include reference="dlj-BR-M8D"/>
-                                        <exclude reference="p7H-LX-Vic"/>
-                                        <exclude reference="sI3-q0-0mU"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <mask key="constraints">
-                                        <include reference="edB-TV-KrK"/>
-                                        <include reference="sIT-Q1-9VZ"/>
-                                        <include reference="tbg-h6-t7S"/>
                                         <include reference="os7-D5-mic"/>
                                         <include reference="qUQ-E2-e4b"/>
                                         <include reference="x4i-HX-X8n"/>
+                                        <include reference="edB-TV-KrK"/>
+                                        <include reference="sIT-Q1-9VZ"/>
+                                        <include reference="tbg-h6-t7S"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -2716,8 +2724,8 @@
                                             <constraint firstAttribute="width" constant="130" id="tMC-Si-7I4"/>
                                             <constraint firstAttribute="height" constant="25" id="zN6-eN-ukx"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" image="table_button_cancel"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="取消" backgroundImage="table_button"/>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="2Nk-3A-mXi"/>
@@ -2825,8 +2833,8 @@
                                             <constraint firstAttribute="width" constant="60" id="mUa-pB-QcC"/>
                                             <constraint firstAttribute="width" constant="60" id="u2C-sk-G8c"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" image="table_button_submit"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="搜尋" backgroundImage="table_button"/>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="M62-b7-j1E"/>
@@ -3382,22 +3390,20 @@
     <resources>
         <image name="detail_button_audio" width="141" height="141"/>
         <image name="detail_button_audioguide" width="100" height="100"/>
-        <image name="group_button_member" width="307" height="100"/>
-        <image name="group_button_narrator" width="307" height="100"/>
+        <image name="group_button_member2" width="307" height="100"/>
+        <image name="group_button_narrator2" width="307" height="100"/>
         <image name="group_button_start" width="215" height="215"/>
         <image name="group_logo" width="407" height="480"/>
-        <image name="index_button_group" width="234" height="57"/>
-        <image name="index_button_individaual" width="234" height="57"/>
+        <image name="index_button" width="234" height="57"/>
         <image name="index_logo" width="493" height="493"/>
         <image name="index_title" width="324" height="145"/>
-        <image name="table_button_cancel" width="180" height="78"/>
+        <image name="table_button" width="180" height="78"/>
         <image name="table_button_home" width="62" height="60"/>
         <image name="table_button_login" width="16" height="20"/>
         <image name="table_button_search" width="20" height="20"/>
-        <image name="table_button_submit" width="180" height="78"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="LBJ-hA-yHv"/>
         <segue reference="uRH-pR-RKc"/>
-        <segue reference="cex-UJ-XzE"/>
     </inferredMetricsTieBreakers>
 </document>
