@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key></key>
+	<string></string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>1.2</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>App needs location servers for stuff</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>ARHeiB5Bold.otf</string>
+		<string>ARHeiB5ExtraBold.otf</string>
+		<string>ARHeiB5Heavy.otf</string>
+		<string>ARHeiB5Light.otf</string>
+		<string>ARHeiB5Medium.otf</string>
+		<string>ARHeiB5Ultra.otf</string>
+		<string>ARYuanB5Bold.otf</string>
+		<string>ARYuanB5ExtraBold.otf</string>
+		<string>ARYuanB5Heavy.otf</string>
+		<string>ARYuanB5Light.otf</string>
+		<string>ARYuanB5Medium.otf</string>
+		<string>ARYuanB5Ultra.otf</string>
+		<string>seguisym.ttf</string>
+		<string>seguisb.ttf</string>
+		<string>segoeuiz.ttf</string>
+		<string>SEGOEUISL.TTF</string>
+		<string>segoeuil.ttf</string>
+		<string>segoeuii.ttf</string>
+		<string>segoeui.ttf</string>
+		<string>segoeuib.ttf</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UIRequiresFullScreen</key>
+	<true/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+</dict>
+</plist>
