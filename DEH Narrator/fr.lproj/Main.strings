@@ -1,0 +1,69 @@
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "1FQ-Eh-IYM"; */
+"1FQ-Eh-IYM.text" = "Label";
+
+/* Class = "UILabel"; text = "POI name"; ObjectID = "4fw-PX-Jyi"; */
+"4fw-PX-Jyi.text" = "POI name";
+
+/* Class = "UIButton"; normalTitle = "Individual"; ObjectID = "56k-jG-gBx"; */
+"56k-jG-gBx.normalTitle" = "Individual";
+
+/* Class = "UILabel"; text = "Settings"; ObjectID = "5lA-bm-T5t"; */
+"5lA-bm-T5t.text" = "Settings";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "6nv-lx-Z7a"; */
+"6nv-lx-Z7a.normalTitle" = "Cancel";
+
+/* Class = "UILabel"; text = "List"; ObjectID = "A6j-0k-sWD"; */
+"A6j-0k-sWD.text" = "List";
+
+/* Class = "UITextView"; text = "(Description)"; ObjectID = "FEH-A6-Ghs"; */
+"FEH-A6-Ghs.text" = "(Description)";
+
+/* Class = "UILabel"; text = "(Sort)"; ObjectID = "HOW-lD-DiA"; */
+"HOW-lD-DiA.text" = "(Sort)";
+
+/* Class = "UIButton"; normalTitle = "Search"; ObjectID = "NaT-DG-0we"; */
+"NaT-DG-0we.normalTitle" = "Search";
+
+/* Class = "UIButton"; normalTitle = "Narrator"; ObjectID = "PEF-ls-T5S"; */
+"PEF-ls-T5S.normalTitle" = "Narrator";
+
+/* Class = "UITextView"; text = "Description"; ObjectID = "Qoc-LH-tIH"; */
+"Qoc-LH-tIH.text" = "Description";
+
+/* Class = "UINavigationItem"; title = "DEH  Narrator"; ObjectID = "S8Q-rN-bRR"; */
+"S8Q-rN-bRR.title" = "DEH  Narrator";
+
+/* Class = "UILabel"; text = "POI name"; ObjectID = "TZr-Sb-0iu"; */
+"TZr-Sb-0iu.text" = "POI name";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "YpQ-an-Io1"; */
+"YpQ-an-Io1.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Group"; ObjectID = "awT-2y-fXc"; */
+"awT-2y-fXc.normalTitle" = "Group";
+
+/* Class = "UILabel"; text = "Sort"; ObjectID = "bsX-c1-C4f"; */
+"bsX-c1-C4f.text" = "Sort";
+
+/* Class = "UILabel"; text = "(Owner)"; ObjectID = "eul-I6-9La"; */
+"eul-I6-9La.text" = "(Owner)";
+
+/* Class = "UILabel"; text = "Owner"; ObjectID = "hke-P7-efC"; */
+"hke-P7-efC.text" = "Owner";
+
+/* Class = "UILabel"; text = "(Address)"; ObjectID = "ipl-PW-GN8"; */
+"ipl-PW-GN8.text" = "(Address)";
+
+/* Class = "UIButton"; normalTitle = "Member"; ObjectID = "iqX-IW-0RO"; */
+"iqX-IW-0RO.normalTitle" = "Member";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "kFD-E6-c4I"; */
+"kFD-E6-c4I.text" = "Label";
+
+/* Class = "UILabel"; text = "範圍 : 3公里"; ObjectID = "pPT-fk-fWi"; */
+"pPT-fk-fWi.text" = "範圍 : 3公里";
+
+/* Class = "UILabel"; text = "Address"; ObjectID = "vxa-9W-3af"; */
+"vxa-9W-3af.text" = "Address";

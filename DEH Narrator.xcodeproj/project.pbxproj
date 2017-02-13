@@ -48,6 +48,7 @@
 		A084B1151DE97F7B009F6FD4 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084B1141DE97F7B009F6FD4 /* CustomCell.swift */; };
 		A084B1171DE9895F009F6FD4 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084B1161DE9895F009F6FD4 /* InfoViewController.swift */; };
 		A084B1191DE9DAB3009F6FD4 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084B1181DE9DAB3009F6FD4 /* VideoPlayerViewController.swift */; };
+		A0BB63501E518DD40093B291 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A0BB63521E518DD40093B291 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +125,10 @@
 		A084B1141DE97F7B009F6FD4 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		A084B1161DE9895F009F6FD4 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		A084B1181DE9DAB3009F6FD4 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
+		A0BB63531E518DDC0093B291 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A0BB63541E518DDD0093B291 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		A0BB63551E518DDF0093B291 /* en-US */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-US"; path = "en-US.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		A0BB63561E518DEF0093B291 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				A084B0D21DE9402F009F6FD4 /* AppDelegate.swift */,
+				A0BB63521E518DD40093B291 /* Localizable.strings */,
 				A084B0D61DE9402F009F6FD4 /* Main.storyboard */,
 				A084B1001DE9446C009F6FD4 /* IndexViewController.swift */,
 				A084B1041DE944EA009F6FD4 /* GroupViewController.swift */,
@@ -359,6 +365,9 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
+				"zh-Hant",
+				"en-US",
 			);
 			mainGroup = A084B0C61DE9402E009F6FD4;
 			productRefGroup = A084B0D01DE9402E009F6FD4 /* Products */;
@@ -390,6 +399,7 @@
 				A022852C1E0A221A00AB4472 /* ARYuanB5Heavy.otf in Resources */,
 				A022852F1E0A222100AB4472 /* ARYuanB5Ultra.otf in Resources */,
 				A084B0DA1DE9402F009F6FD4 /* Assets.xcassets in Resources */,
+				A0BB63501E518DD40093B291 /* Localizable.strings in Resources */,
 				A02285281E0A221200AB4472 /* ARHeiB5Medium.otf in Resources */,
 				A02285291E0A221400AB4472 /* ARHeiB5Ultra.otf in Resources */,
 				A022852B1E0A221800AB4472 /* ARYuanB5ExtraBold.otf in Resources */,
@@ -544,6 +554,17 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		A0BB63521E518DD40093B291 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A0BB63531E518DDC0093B291 /* ja */,
+				A0BB63541E518DDD0093B291 /* zh-Hant */,
+				A0BB63551E518DDF0093B291 /* en-US */,
+				A0BB63561E518DEF0093B291 /* Base */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -652,7 +673,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 5H68PT52FM;
 				INFOPLIST_FILE = "DEH Narrator/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.NCKU.deh-narrator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -675,7 +696,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 5H68PT52FM;
 				INFOPLIST_FILE = "DEH Narrator/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.NCKU.deh-narrator";
 				PRODUCT_NAME = "$(TARGET_NAME)";

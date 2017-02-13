@@ -70,7 +70,12 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
     }
     
     /***************************** definitions of searching types pickerview ******************************/
-    let options = ["附近景點", "附近景線", "附近景區", "我的景點", "我的景線", "我的景區"]
+    let options = [NSLocalizedString("NEARBY_POIS", comment:"nearby_pois"),
+                   NSLocalizedString("NEARBY_LOIS", comment:"nearby_lois"),
+                   NSLocalizedString("NEARBY_AOIS", comment:"nearby_aois"),
+                   NSLocalizedString("MY_POIS", comment:"my_pois"),
+                   NSLocalizedString("MY_LOIS", comment:"my_lois"),
+                   NSLocalizedString("MY_AOIS", comment:"my_aois")]
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
@@ -99,7 +104,7 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
     @IBAction func searchingRadiusChanged(sender: AnyObject) {
         let currentValue = Int(radiusSlider.value)
         searchingRadius = currentValue * 1000
-        searchingRadiusLabel.text = "範圍 : \(currentValue)公里"
+        searchingRadiusLabel.text = NSLocalizedString("RANGE", comment:"range") + " : \(currentValue)" + NSLocalizedString("KM", comment:"km")
     }
     
     @IBAction func submitButtonTapped(sender: AnyObject) {
@@ -120,11 +125,11 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
             var userTextField: UITextField?
             var pwdTextField: UITextField?
             
-            let loginAlert = UIAlertController(title: "會員登入", message: "請輸入帳號及密碼", preferredStyle: .Alert)
-            loginAlert.addAction(UIAlertAction(title: "確認", style: .Default, handler: { action in
+            let loginAlert = UIAlertController(title: NSLocalizedString("LOGIN", comment:"login") ,message: NSLocalizedString("ENTER_ACC_AND_PWD", comment:"enter_acc_and_pwd"), preferredStyle: .Alert)
+            loginAlert.addAction(UIAlertAction(title: NSLocalizedString("SUBMIT", comment:"submit"), style: .Default, handler: { action in
                 if userTextField!.text! == "" || pwdTextField!.text! == "" {
-                    let alert = UIAlertController(title: "登入失敗", message: "帳號或密碼錯誤", preferredStyle: .Alert)
-                    alert.addAction(UIAlertAction(title: "確認", style: .Default, handler: nil))
+                    let alert = UIAlertController(title: NSLocalizedString("LOGIN_FAILED", comment:"login_failed"), message: NSLocalizedString("INVALID_ACC_OR_PWD", comment:"invalid_acc_or_pwd"), preferredStyle: .Alert)
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment:"ok"), style: .Default, handler: nil))
                     self.presentViewController(alert, animated: true, completion: nil)
                 }
                 else {
@@ -134,16 +139,16 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
                             let JSONObj = JSON(data: msgString!)
                             let uname = JSONObj["username"].stringValue
                             if uname != userTextField!.text! {
-                                let alert = UIAlertController(title: "登入失敗", message: "帳號或密碼錯誤", preferredStyle: .Alert)
-                                alert.addAction(UIAlertAction(title: "確認", style: .Default, handler: nil))
+                                let alert = UIAlertController(title: NSLocalizedString("LOGIN_FAILED", comment:"login_failed"), message: NSLocalizedString("INVALID_ACC_OR_PWD", comment:"invalid_acc_or_pwd"), preferredStyle: .Alert)
+                                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment:"ok"), style: .Default, handler: nil))
                                 self.presentViewController(alert, animated: true, completion: nil)
                             }
                             else {
                                 self.username = uname
                                 self.password = pwdTextField!.text!
                                 self.searchingTypeSelector.reloadAllComponents()
-                                let alert = UIAlertController(title: "登入成功", message: uname+", 歡迎回來", preferredStyle: .Alert)
-                                alert.addAction(UIAlertAction(title: "確認", style: .Default, handler: nil))
+                                let alert = UIAlertController(title: NSLocalizedString("LOGIN_SUCCESS", comment:"login_success"), message: uname+NSLocalizedString("WELCOME_BACK", comment:"welcome_back"), preferredStyle: .Alert)
+                                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment:"ok"), style: .Default, handler: nil))
                                 self.presentViewController(alert, animated: true, completion: nil)
                                 
                             }
@@ -151,14 +156,14 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
                     }
                 }
             }))
-            loginAlert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+            loginAlert.addAction(UIAlertAction(title: NSLocalizedString("CANCEL", comment:"cancel"), style: .Cancel, handler: nil))
             loginAlert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
-                textField.placeholder = "帳號"
+                textField.placeholder = NSLocalizedString("ACCOUNT", comment:"account")
                 textField.secureTextEntry = false
                 userTextField = textField
             })
             loginAlert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
-                textField.placeholder = "密碼"
+                textField.placeholder = NSLocalizedString("PASSWORD", comment:"password")
                 textField.secureTextEntry = true
                 pwdTextField = textField
             })
@@ -169,8 +174,8 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
             password = ""
             clearTable()
             searchingTypeSelector.reloadAllComponents()
-            let alert = UIAlertController(title: "登出成功", message: "回到訪客身份", preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "確認", style: .Default, handler: nil))
+            let alert = UIAlertController(title: NSLocalizedString("LOGOUT_SUCCESS", comment:"logout_success"), message: NSLocalizedString("GUEST_STATE", comment:"guest_state"), preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment:"ok"), style: .Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }
     }
@@ -267,7 +272,7 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
     func clearTable()
     {
         dataArray.removeAll()
-        listLabel.text = "列表"
+        listLabel.text = NSLocalizedString("LIST", comment:"list")
         tableView.reloadData()
     }
     
@@ -379,7 +384,15 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
                     self.dataArray.removeAll()
                     self.dataArray = jsonObj["results"].arrayValue
         
-                    self.listLabel.text = self.searchingType
+                    switch self.searchingType {
+                        case "附近景點": self.listLabel.text = NSLocalizedString("NEARBY_POIS", comment:"nearby_pois"); break
+                        case "附近景線": self.listLabel.text = NSLocalizedString("NEARBY_LOIS", comment:"nearby_lois"); break
+                        case "附近景區": self.listLabel.text = NSLocalizedString("NEARBY_AOIS", comment:"nearby_aois"); break
+                        case "我的景點": self.listLabel.text = NSLocalizedString("MY_POIS", comment:"my_pois"); break
+                        case "我的景線": self.listLabel.text = NSLocalizedString("MY_LOIS", comment:"my_lois"); break
+                        case "我的景區": self.listLabel.text = NSLocalizedString("MY_AOIS", comment:"my_aois"); break
+                        default: self.listLabel.text = NSLocalizedString("LIST", comment:"list"); break
+                    }
                     self.tableView.reloadData()
                     self.dismissViewControllerAnimated(false, completion: nil)
                 }
@@ -408,7 +421,15 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
                     self.dataArray.removeAll()
                     self.dataArray = jsonObj["results"].arrayValue
                     
-                    self.listLabel.text = self.searchingType
+                    switch self.searchingType {
+                        case "附近景點": self.listLabel.text = NSLocalizedString("NEARBY_POIS", comment:"nearby_pois"); break
+                        case "附近景線": self.listLabel.text = NSLocalizedString("NEARBY_LOIS", comment:"nearby_lois"); break
+                        case "附近景區": self.listLabel.text = NSLocalizedString("NEARBY_AOIS", comment:"nearby_aois"); break
+                        case "我的景點": self.listLabel.text = NSLocalizedString("MY_POIS", comment:"my_pois"); break
+                        case "我的景線": self.listLabel.text = NSLocalizedString("MY_LOIS", comment:"my_lois"); break
+                        case "我的景區": self.listLabel.text = NSLocalizedString("MY_AOIS", comment:"my_aois"); break
+                        default: self.listLabel.text = NSLocalizedString("LIST", comment:"list"); break
+                    }
                     self.tableView.reloadData()
                     self.dismissViewControllerAnimated(false, completion: nil)
                 }

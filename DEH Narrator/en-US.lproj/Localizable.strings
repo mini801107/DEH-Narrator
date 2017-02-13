@@ -1,0 +1,42 @@
+/* 
+  Localizable.strings
+  DEH Narrator
+
+  Created by 蔡佳旅 on 2017/2/13.
+  Copyright © 2017年 蔡佳旅. All rights reserved.
+*/
+
+/* Picker View in SearchTableView */
+"NEARBY_POIS" = "Nearby POIs";
+"NEARBY_LOIS" = "Nearby LOIs";
+"NEARBY_AOIS" = "Nearby AOIs";
+"MY_POIS" = "My POIs";
+"MY_LOIS" = "My LOIs";
+"MY_AOIS" = "My AOIs";
+
+/* Searching settings in SearchTableView */
+"LIST" = "List";
+"RANGE" = "Range";
+"KM" = " km";
+
+/* Login window in SearchTableView */
+"LOGIN" = "Login";
+"ENTER_ACC_AND_PWD" = "Please enter your account and password";
+"SUBMIT" = "submit";
+"LOGIN_FAILED" = "Failed to login";
+"INVALID_ACC_OR_PWD" = "Invalid account or password";
+"OK" = "OK";
+"LOGIN_SUCCESS" = "Login successfully";
+"WELCOME_BACK" = ", welcome back";
+"CANCEL" = "cancel";
+"ACCOUNT" = "Account";
+"PASSWORD" = "Password";
+"LOGOUT_SUCCESS" = "Logout successfully";
+"GUEST_STATE" = "See you next time";
+
+/* Alear in GroupView */
+"ACCESSIBLE" = "Accessible now";
+"WAIT_FOR_MEMBER" = "Wait for members to connect and then start guiding";
+"UNCONNECTED" = "Unconnected";
+"TRY_AGAIN" = "Please try again";
+

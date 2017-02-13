@@ -63,7 +63,7 @@
 "kFD-E6-c4I.text" = "Label";
 
 /* Class = "UILabel"; text = "範圍 : 3公里"; ObjectID = "pPT-fk-fWi"; */
-"pPT-fk-fWi.text" = "範圍 : 3公里";
+"pPT-fk-fWi.text" = "Range : 3 km";
 
 /* Class = "UILabel"; text = "地址"; ObjectID = "vxa-9W-3af"; */
 "vxa-9W-3af.text" = "Address";

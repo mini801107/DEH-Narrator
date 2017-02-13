@@ -1,0 +1,42 @@
+/* 
+  Localizable.strings
+  DEH Narrator
+
+  Created by 蔡佳旅 on 2017/2/13.
+  Copyright © 2017年 蔡佳旅. All rights reserved.
+*/
+
+/* Picker View in SearchTableView */
+"NEARBY_POIS" = "附近景點";
+"NEARBY_LOIS" = "附近景線";
+"NEARBY_AOIS" = "附近景區";
+"MY_POIS" = "我的景點";
+"MY_LOIS" = "我的景線";
+"MY_AOIS" = "我的景區";
+
+/* Searching settings in SearchTableView */
+"LIST" = "列表";
+"RANGE" = "範圍";
+"KM" = "公里";
+
+/* Login window in SearchTableView */
+"LOGIN" = "會員登入";
+"ENTER_ACC_AND_PWD" = "請輸入帳號及密碼";
+"SUBMIT" = "確認";
+"LOGIN_FAILED" = "登入失敗";
+"INVALID_ACC_OR_PWD" = "帳號或密碼錯誤";
+"OK" = "確認";
+"LOGIN_SUCCESS" = "登入成功";
+"WELCOME_BACK" = ", 歡迎回來";
+"CANCEL" = "取消";
+"ACCOUNT" = "帳號";
+"PASSWORD" = "密碼";
+"LOGOUT_SUCCESS" = "登出成功";
+"GUEST_STATE" = "回到訪客身份";
+
+/* Alear in GroupView */
+"ACCESSIBLE" = "開放連線";
+"WAIT_FOR_MEMBER" = "等待成員連線即可開始導覽";
+"UNCONNECTED" = "尚未連線";
+"TRY_AGAIN" = "請點擊重試";
+

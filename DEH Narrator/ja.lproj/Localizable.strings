@@ -1,0 +1,41 @@
+/* 
+  Localizable.strings
+  DEH Narrator
+
+  Created by 蔡佳旅 on 2017/2/13.
+  Copyright © 2017年 蔡佳旅. All rights reserved.
+*/
+
+/* Picker View in SearchTableView */
+"NEARBY_POIS" = "近所のPOIs";
+"NEARBY_LOIS" = "近所のLOIs";
+"NEARBY_AOIS" = "近所のAOIs";
+"MY_POIS" = "私のPOIs";
+"MY_LOIS" = "私のLOIs";
+"MY_AOIS" = "私のAOIs";
+
+/* Searching settings in SearchTableView */
+"LIST" = "リスト";
+"RANGE" = "半径";
+"KM" = "キロ";
+
+/* Login window in SearchTableView */
+"LOGIN" = "ログイン";
+"ENTER_ACC_AND_PWD" = "ユーザー名とパスワードを入力してください";
+"SUBMIT" = "確認";
+"LOGIN_FAILED" = "失敗しました";
+"INVALID_ACC_OR_PWD" = "ユーザー名やパスワードが正しくありません";
+"OK" = "確認";
+"LOGIN_SUCCESS" = "成功しました";
+"WELCOME_BACK" = ", ようこそ";
+"CANCEL" = "戻る";
+"ACCOUNT" = "ユーザー名";
+"PASSWORD" = "パスワード";
+"LOGOUT_SUCCESS" = "サインアウト";
+"GUEST_STATE" = "またね";
+
+/* Alear in GroupView */
+"ACCESSIBLE" = "接続を開きました";
+"WAIT_FOR_MEMBER" = "メンバーがガイドを開始するために接続するのを待ちます";
+"UNCONNECTED" = "未接続";
+"TRY_AGAIN" = "もう一度試してみてください";

@@ -34,8 +34,8 @@ class GroupViewController: UIViewController {
         Var.narratorService = NarratorService()
         Var.narratorService.startBroadcast()
         
-        let alert = UIAlertController(title: "開放連線", message: "等待成員連線即可開始導覽", preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "確認", style: .Default, handler: nil))
+        let alert = UIAlertController(title: NSLocalizedString("ACCESSIBLE", comment:"accessible"), message: NSLocalizedString("WAIT_FOR_MEMBER", comment:"wait_for_member"), preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment:"ok"), style: .Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
         startButton.hidden = false
     }
@@ -57,8 +57,8 @@ class GroupViewController: UIViewController {
         }
         else if Var.userMode == "Member" {
             if Var.narratorServiceBrowser.connectToServer == false {
-                let alert = UIAlertController(title: "尚未連線", message: "請點擊重試", preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "確認", style: .Default, handler: nil))
+                let alert = UIAlertController(title: NSLocalizedString("UNCONNECTED", comment:"unconnected"), message: NSLocalizedString("TRY_AGAIN", comment:"try_again"), preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment:"ok"), style: .Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
             else{
