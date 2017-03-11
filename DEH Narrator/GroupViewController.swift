@@ -12,6 +12,7 @@ import CocoaAsyncSocket
 class GroupViewController: UIViewController {
 
     @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var memberButton: UIButton!
     
     var serverSocket: GCDAsyncSocket?
     var clientSocket: GCDAsyncSocket?
@@ -19,6 +20,9 @@ class GroupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         startButton.hidden = true
+        
+        memberButton.addTarget(self, action: #selector(GroupViewController.holdRelease(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        memberButton.addTarget(self, action: #selector(GroupViewController.holdDown(_:)), forControlEvents: UIControlEvents.TouchDown)
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,6 +49,7 @@ class GroupViewController: UIViewController {
         if Var.userMode == "Narrator" {
             Var.narratorService = nil
         }
+        
         Var.userMode = "Member"
         Var.narratorServiceBrowser = NarratorServiceBrowser()
         Var.narratorServiceBrowser.startBrowsing()
@@ -75,6 +80,18 @@ class GroupViewController: UIViewController {
 //                }
 //            }
         }
+    }
+
+    
+    //target functions
+    func holdDown(sender:UIButton)
+    {
+        memberButton.backgroundColor = UIColor(red: 112.0/255.0, green: 151.0/255.0, blue: 173.0/255.0, alpha: 1.0)
+    }
+    
+    func holdRelease(sender:UIButton)
+    {
+        memberButton.backgroundColor = UIColor.whiteColor()
     }
     
 }

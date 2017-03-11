@@ -83,7 +83,6 @@ class NarratorServiceBrowser: NSObject, NSNetServiceDelegate, NSNetServiceBrowse
     
     func netServiceDidResolveAddress(sender: NSNetService) {
         if connectWithService(sender) {
-            connectToServer = true
             print("Did connect with service")
         } else {
             print("Error connecting with service")
@@ -127,6 +126,7 @@ class NarratorServiceBrowser: NSObject, NSNetServiceDelegate, NSNetServiceBrowse
     //add the delegate function that will get called when the socket is connected
     func socket(sock: GCDAsyncSocket, didConnectToHost host: String, port: UInt16) {
         socket.readDataToLength(UInt(sizeof(Int32)), withTimeout: -1, tag: 1)
+        connectToServer = true
         print("connect to host")
     }
     

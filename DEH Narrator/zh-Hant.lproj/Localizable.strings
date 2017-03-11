@@ -33,10 +33,19 @@
 "PASSWORD" = "密碼";
 "LOGOUT_SUCCESS" = "登出成功";
 "GUEST_STATE" = "回到訪客身份";
+"LOGOUT" = "登出";
+"SURE_TO_LOGOUT" = "請問您要登出嗎?";
 
 /* Alear in GroupView */
 "ACCESSIBLE" = "開放連線";
 "WAIT_FOR_MEMBER" = "等待成員連線即可開始導覽";
 "UNCONNECTED" = "尚未連線";
 "TRY_AGAIN" = "請點擊重試";
+
+/* Private POI protection in InfoView */
+"PRIVATE_POI" = "此景點為私人景點";
+"CONTACT_NARRATOR" = "無法觀看該景點內容\n詳細內容請聯絡導覽員：";
+
+
+
 

@@ -30,8 +30,6 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
     let sendhttprequest = SendHttpRequest()
     var searchingRadius: Int = 3000
     var searchingType: String = "附近景點"
-    var username: String = ""
-    var password: String = ""
     var dataArray = Array<JSON>()
     
     override func viewDidLoad() {
@@ -82,7 +80,7 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if username == "" {
+        if Var.username == "" {
             return 3
         }
         else {
@@ -141,7 +139,7 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
     
     /***************************** Login and Search Button in Navigation Item ****************************/
     @IBAction func loginButtonTapped(sender: AnyObject) {
-        if username == "" {   // when user has not login
+        if Var.username == "" {   // when user has not login
             var userTextField: UITextField?
             var pwdTextField: UITextField?
             
@@ -164,8 +162,8 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
                                 self.presentViewController(alert, animated: true, completion: nil)
                             }
                             else {
-                                self.username = uname
-                                self.password = pwdTextField!.text!
+                                Var.username = uname
+                                Var.password = pwdTextField!.text!
                                 self.searchingTypeSelector.reloadAllComponents()
                                 let alert = UIAlertController(title: NSLocalizedString("LOGIN_SUCCESS", comment:"login_success"), message: uname+NSLocalizedString("WELCOME_BACK", comment:"welcome_back"), preferredStyle: .Alert)
                                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment:"ok"), style: .Default, handler: nil))
@@ -190,13 +188,18 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
             self.presentViewController(loginAlert, animated: true, completion: nil)
         }
         else {  // when user has login
-            username = ""
-            password = ""
-            clearTable()
-            searchingTypeSelector.reloadAllComponents()
-            let alert = UIAlertController(title: NSLocalizedString("LOGOUT_SUCCESS", comment:"logout_success"), message: NSLocalizedString("GUEST_STATE", comment:"guest_state"), preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment:"ok"), style: .Default, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
+            let logoutAlert = UIAlertController(title: NSLocalizedString("LOGOUT", comment:"logout") ,message: NSLocalizedString("SURE_TO_LOGOUT", comment:"sure_to_logout"), preferredStyle: .Alert)
+            logoutAlert.addAction(UIAlertAction(title: NSLocalizedString("CANCEL", comment:"cancel"), style: .Cancel, handler: nil))
+            logoutAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment:"ok"), style: .Default, handler: { action in
+                Var.username = ""
+                Var.password = ""
+                self.clearTable()
+                self.searchingTypeSelector.reloadAllComponents()
+                let alert = UIAlertController(title: NSLocalizedString("LOGOUT_SUCCESS", comment:"logout_success"), message: NSLocalizedString("GUEST_STATE", comment:"guest_state"), preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment:"ok"), style: .Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }))
+            self.presentViewController(logoutAlert, animated: true, completion: nil)
         }
     }
     
@@ -338,8 +341,6 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
         }
         if segue.identifier == "BackToIndexUnwind" {
             dataArray.removeAll()
-            username = ""
-            password = ""
             Var.narratorService = nil
             Var.narratorServiceBrowser = nil
             Var.userMode = ""
@@ -436,7 +437,7 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
             }
             
             sendhttprequest.authorization(){ token in
-                self.sendhttprequest.getUserData(url, token: token!, user: self.username, pwd: self.password){ JSONString in
+                self.sendhttprequest.getUserData(url, token: token!, user: Var.username, pwd: Var.password){ JSONString in
                     let JSONData = JSONString!.dataUsingEncoding(NSUTF8StringEncoding)
                     let jsonObj = JSON(data: JSONData!)
                     self.dataArray.removeAll()

@@ -75,8 +75,8 @@ class InfoViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // show alert when selecting unpublic POI
         if POIset[indexPath.row]["identifier"].stringValue == "docent" {
-            if POIset[indexPath.row]["open"].boolValue == false {
-                let alert = UIAlertController(title: "此景點為私人景點", message: "無法觀看該景點內容\n詳細內容請聯絡導覽員：\(rights)", preferredStyle: .Alert)
+            if (POIset[indexPath.row]["open"].boolValue == false) && (rights != Var.username) {
+                let alert = UIAlertController(title: NSLocalizedString("PRIVATE_POI", comment:"private_poi"), message: NSLocalizedString("CONTACT_NARRATOR", comment:"private_poi") + "\(rights)", preferredStyle: .Alert)
                 alert.addAction(UIAlertAction(title: "確認", style: .Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
                 

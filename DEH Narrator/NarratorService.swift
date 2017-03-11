@@ -45,6 +45,10 @@ class NarratorService: NSObject, NSNetServiceDelegate, GCDAsyncSocketDelegate, A
         }
         print("Published successfully on port \(service.port) / domain: \(service.domain) / \(service.type) / \(service.name))")
     }
+    
+    func netServiceDidStop(sender: NSNetService) {
+        print("stop service")
+    }
 
     func socket(sock: GCDAsyncSocket, didAcceptNewSocket newSocket: GCDAsyncSocket) {
         print("New socket accepted on host: \(newSocket.connectedHost), port: \(newSocket.connectedPort)")

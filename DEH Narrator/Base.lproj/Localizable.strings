@@ -33,9 +33,15 @@
 "PASSWORD" = "Password";
 "LOGOUT_SUCCESS" = "Logout successfully";
 "GUEST_STATE" = "See you next time";
+"LOGOUT" = "Logout";
+"SURE_TO_LOGOUT" = "Do you want to logout?";
 
 /* Alear in GroupView */
 "ACCESSIBLE" = "Accessible now";
 "WAIT_FOR_MEMBER" = "Wait for members to connect and then start guiding";
 "UNCONNECTED" = "Unconnected";
 "TRY_AGAIN" = "Please try again";
+
+/* Private POI protection in InfoView */
+"PRIVATE_POI" = "This is a private POI";
+"CONTACT_NARRATOR" = "Unable to view the POI.\nContact narrator for more detail：";

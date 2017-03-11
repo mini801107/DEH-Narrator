@@ -12,6 +12,8 @@ struct Var {
     static var userMode: String = ""
     static var narratorService: NarratorService! = nil
     static var narratorServiceBrowser: NarratorServiceBrowser! = nil
+    static var username: String = ""
+    static var password: String = ""
 }
 
 class IndexViewController: UIViewController {

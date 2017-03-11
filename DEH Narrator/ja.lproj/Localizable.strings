@@ -33,9 +33,16 @@
 "PASSWORD" = "パスワード";
 "LOGOUT_SUCCESS" = "サインアウト";
 "GUEST_STATE" = "またね";
+"LOGOUT" = "ログアウト";
+"SURE_TO_LOGOUT" = "ログアウトしますか？";
 
 /* Alear in GroupView */
 "ACCESSIBLE" = "接続を開きました";
 "WAIT_FOR_MEMBER" = "メンバーがガイドを開始するために接続するのを待ちます";
 "UNCONNECTED" = "未接続";
 "TRY_AGAIN" = "もう一度試してみてください";
+
+/* Private POI protection in InfoView */
+"PRIVATE_POI" = "このPOIはプライベート";
+"CONTACT_NARRATOR" = "見ることができません\n詳細はガイドにお問い合わせください：";
+
