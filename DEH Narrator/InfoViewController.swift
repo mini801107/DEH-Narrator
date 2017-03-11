@@ -77,7 +77,7 @@ class InfoViewController: UIViewController, UITableViewDelegate, UITableViewData
         if POIset[indexPath.row]["identifier"].stringValue == "docent" {
             if (POIset[indexPath.row]["open"].boolValue == false) && (rights != Var.username) {
                 let alert = UIAlertController(title: NSLocalizedString("PRIVATE_POI", comment:"private_poi"), message: NSLocalizedString("CONTACT_NARRATOR", comment:"private_poi") + "\(rights)", preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "確認", style: .Default, handler: nil))
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment:"ok"), style: .Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
                 
                 return
