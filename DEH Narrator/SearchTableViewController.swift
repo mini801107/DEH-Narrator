@@ -95,7 +95,27 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        searchingType = options[pickerView.selectedRowInComponent(0)]
+        switch options[pickerView.selectedRowInComponent(0)] {
+            case "附近景點": searchingType = "附近景點";break
+            case "附近景線": searchingType = "附近景線";break
+            case "附近景區": searchingType = "附近景區";break
+            case "我的景點": searchingType = "我的景點";break
+            case "我的景線": searchingType = "我的景線";break
+            case "我的景區": searchingType = "我的景區";break
+            case "Nearby POIs": searchingType = "附近景點";break
+            case "Nearby LOIs": searchingType = "附近景線";break
+            case "Nearby AOIs": searchingType = "附近景區";break
+            case "My POIs": searchingType = "我的景點";break
+            case "My LOIs": searchingType = "我的景線";break
+            case "My AOIs": searchingType = "我的景區";break
+            case "近所のPOIs": searchingType = "附近景點";break
+            case "近所のLOIs": searchingType = "附近景線";break
+            case "近所のAOIs": searchingType = "附近景區";break
+            case "私のPOIs": searchingType = "我的景點";break
+            case "私のLOIs": searchingType = "我的景線";break
+            case "私のAOIs": searchingType = "我的景區";break
+            default: searchingType = ""; break
+        }
     }
     /******************************************************************************************************/
 
@@ -207,21 +227,19 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! CustomCell
-        
-        let str = searchingType as NSString
-        if str.substringWithRange(NSRange(location: 2, length: 2)) == "景點" {
+
+        if dataArray[indexPath.row]["POI_title"].stringValue != "" {
             cell.title.text = dataArray[indexPath.row]["POI_title"].stringValue
             cell.desc.text = dataArray[indexPath.row]["POI_description"].stringValue
         }
-        else if str.substringWithRange(NSRange(location: 2, length: 2)) == "景線" {
+        else if dataArray[indexPath.row]["LOI_title"].stringValue != "" {
             cell.title.text = dataArray[indexPath.row]["LOI_title"].stringValue
             cell.desc.text = dataArray[indexPath.row]["LOI_description"].stringValue
         }
-        else if str.substringWithRange(NSRange(location: 2, length: 2)) == "景區" {
+        else if dataArray[indexPath.row]["AOI_title"].stringValue != "" {
             cell.title.text = dataArray[indexPath.row]["AOI_title"].stringValue
             cell.desc.text = dataArray[indexPath.row]["AOI_description"].stringValue
         }
-        
         
         let identifier = dataArray[indexPath.row]["identifier"].stringValue
         switch identifier {
@@ -239,7 +257,7 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
             break
         }
         
-        if str.substringWithRange(NSRange(location: 2, length: 2)) == "景點" {
+        if dataArray[indexPath.row]["POI_title"].stringValue != "" {
             let media_set = dataArray[indexPath.row]["media_set"].arrayValue
             if media_set != [] {
                 let media_type: String! = media_set[0]["media_type"].stringValue
@@ -277,8 +295,7 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let str = searchingType as NSString
-        if str.substringWithRange(NSRange(location: 2, length: 2)) == "景點" {
+        if dataArray[0]["POI_title"].stringValue != "" {
             //send POI info to clients
             if Var.userMode == "Narrator" {
                 do{
@@ -306,13 +323,12 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
         if segue.identifier == "TableToInfo" {
             let POIset = dataArray[(sender?.integerValue)!]["POI_set"].arrayValue
             if let destinationVC = segue.destinationViewController as? InfoViewController {
-                let str = searchingType as NSString
-                if str.substringWithRange(NSRange(location: 2, length: 2)) == "景線" {
+                if dataArray[0]["LOI_title"].stringValue != "" {
                     destinationVC.LOI_AOI_title = dataArray[(sender?.integerValue)!]["LOI_title"].stringValue
                     destinationVC.desc = dataArray[(sender?.integerValue)!]["LOI_description"].stringValue
                     destinationVC.rights = dataArray[(sender?.integerValue)!]["rights"].stringValue
                 }
-                else if str.substringWithRange(NSRange(location: 2, length: 2)) == "景區" {
+                else if dataArray[0]["AOI_title"].stringValue != "" {
                     destinationVC.LOI_AOI_title = dataArray[(sender?.integerValue)!]["AOI_title"].stringValue
                     destinationVC.desc = dataArray[(sender?.integerValue)!]["AOI_description"].stringValue
                     destinationVC.rights = dataArray[(sender?.integerValue)!]["rights"].stringValue
@@ -349,6 +365,11 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
     func searchDataFromServer(coordinate: CLLocationCoordinate2D)
     {
         print("latitude = \(coordinate.latitude), longitude = \(coordinate.longitude)\n")
+        /* prevent empty searching type (empty option in picker view) */
+        if searchingType == "" {
+            print("empty")
+            return
+        }
         
         /* display loading view */
         let loadingView = UIAlertController(title: nil, message: "Loading ...", preferredStyle: .Alert)
@@ -359,7 +380,7 @@ class SearchTableViewController: UIViewController, CLLocationManagerDelegate, UI
         loadingIndicator.startAnimating()
         loadingView.view.addSubview(loadingIndicator)
         presentViewController(loadingView, animated: true, completion: nil)
-        
+     
         let str = searchingType as NSString
         if str.substringWithRange(NSRange(location: 0, length: 2)) == "附近" {
             var url = String()
