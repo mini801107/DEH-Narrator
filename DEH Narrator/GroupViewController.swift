@@ -20,9 +20,7 @@ class GroupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         startButton.hidden = true
-        
-        memberButton.addTarget(self, action: #selector(GroupViewController.holdRelease(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        memberButton.addTarget(self, action: #selector(GroupViewController.holdDown(_:)), forControlEvents: UIControlEvents.TouchDown)
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,18 +78,6 @@ class GroupViewController: UIViewController {
 //                }
 //            }
         }
-    }
-
-    
-    //target functions
-    func holdDown(sender:UIButton)
-    {
-        memberButton.backgroundColor = UIColor(red: 112.0/255.0, green: 151.0/255.0, blue: 173.0/255.0, alpha: 1.0)
-    }
-    
-    func holdRelease(sender:UIButton)
-    {
-        memberButton.backgroundColor = UIColor.whiteColor()
     }
     
 }
